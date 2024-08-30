@@ -26,9 +26,10 @@ window.addEventListener('keydown', (e) => {
     }
     if(e.keyCode == 40){
         keyboard.DOWN = true;
-    }
-    console.log(e);
-    
+    } 
+    if(e.keyCode == 68){
+        keyboard.D = true;
+    } 
 })
 
 window.addEventListener('keyup', (e) => {
@@ -47,5 +48,7 @@ window.addEventListener('keyup', (e) => {
     if(e.keyCode == 40){
         keyboard.DOWN = false;
     }
-    console.log(e);
+    if(e.keyCode == 68){
+        keyboard.D = false;
+    } 
 })
