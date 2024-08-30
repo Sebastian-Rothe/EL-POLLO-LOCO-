@@ -9,6 +9,8 @@ class Character extends MovableObject {
         './img/2_character_pepe/2_walk/W-25.png',
         './img/2_character_pepe/2_walk/W-26.png'
     ];
+    world;
+    speed = 10;
 
     constructor(){
         super().loadImage('./img/2_character_pepe/2_walk/W-21.png');
@@ -19,12 +21,23 @@ class Character extends MovableObject {
     };
 
     animate() {
+        setInterval(() => {
+            if(this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x){
+                this.x += this.speed;
+                this.otherDirection = false;
+            }
+            if(this.world.keyboard.LEFT && this.x > 0){
+                this.x -= this.speed;
+                this.otherDirection = true;
+            }
+            this.world.camera_x = -this.x + 100;
+        }, 1000 / 60);
+
         setInterval(() =>{
-            let i = this.currentImage % this.Images_Walking.length; // let i = 0 % 6; loop => if i === length then start over...
-            let path = this.Images_Walking[i];
-            this.img = this.imageCache[path];
-            this.currentImage++;
-        }, 150);
+            if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT){
+                this.playAnimation(this.Images_Walking);  
+            }
+        }, 50);
     };
    
     jump(){
