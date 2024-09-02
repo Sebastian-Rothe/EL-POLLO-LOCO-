@@ -1,6 +1,9 @@
 class World {
     character = new Character();
-    statusBar = new StatusBar();
+    statusHealth = new StatusHealth(); 
+    statusCorn = new StatusCorn();      
+    statusBottle = new StatusBottle();  
+    statusEndboss = new StatusEndboss(); 
     
     level = level1;
     canvas;
@@ -18,7 +21,6 @@ class World {
         this.run();
     };
     
-    
     run(){
         setInterval(() => {
             this.checkCollisions();
@@ -30,7 +32,7 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if(this.character.isColliding(enemy) ) {
                 this.character.hit();
-                this.statusBar.setPercentage(this.character.energy)
+                this.statusHealth.setPercentage(this.character.energy)
             };
         })
     }
@@ -50,15 +52,18 @@ class World {
 
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMaps(this.level.backgroundObjects);
+        this.addObjectsToMaps(this.level.clouds);
 
         this.ctx.translate(-this.camera_x, 0);
         // ------ Space for fixed  objects------------
-        this.addToMap(this.statusBar);
+        this.addToMap(this.statusHealth); 
+        this.addToMap(this.statusCorn);   
+        this.addToMap(this.statusBottle); 
+        this.addToMap(this.statusEndboss); 
         this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.character);
         this.addObjectsToMaps(this.level.enemies);
-        this.addObjectsToMaps(this.level.clouds);
         this.addObjectsToMaps(this.throwableObjects);
 
         this.ctx.translate(-this.camera_x, 0);
