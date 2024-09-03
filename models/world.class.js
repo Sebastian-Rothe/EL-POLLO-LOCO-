@@ -38,10 +38,12 @@ class World {
         });
     }
 
-    checkThrowObjects(){
-        if(this.keyboard.D){
+    checkThrowObjects() {
+        if (this.keyboard.D && this.character.bottlesCollected > 0) { // Überprüfe, ob 'D' gedrückt wird und es aufgesammelte Flaschen gibt
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
+            this.character.bottlesCollected -= 1; // Reduziere die Anzahl der aufgesammelten Flaschen
+            this.statusBottle.setPercentage(this.character.bottlesCollected * 20); // Aktualisiere den Status für die Flaschenanzeige
         }
     }
 
