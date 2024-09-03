@@ -12,6 +12,7 @@ class Level {
         this.backgroundObjects = backgroundObjects;
         this.coins = coins;
         this.bottles = bottles;
+        this.endboss = this.enemies.find(enemy => enemy instanceof Endboss); // Endboss in enemies suchen und speichern
     }
 
 }

@@ -26,9 +26,27 @@ class World {
             this.checkCollisions();
             this.checkThrowObjects();
             this.checkCollectibles(); // Neue Methode aufrufen
+            this.checkEndbossVisibility(); // Überprüfen, ob der Endgegner sichtbar wird
+            this.checkEndbossHit()
         }, 200);
     }
+
+    checkEndbossHit() {
+        this.throwableObjects.forEach((bottle, bottleIndex) => {
+            if (this.level.endboss.isColliding(bottle)) { 
+                this.level.endboss.hit(); // Endboss wird getroffen
+                this.level.endboss.updateEndbossStatus(); // Statusleiste aktualisieren
+                this.throwableObjects.splice(bottleIndex, 1); // Flasche entfernen
+            }
+        });
+    }
     
+    checkEndbossVisibility() {
+        if (this.character.x > 2100 && !this.level.enemies[0].moving) {
+            this.level.enemies[0].startMoving(); // Startet die Bewegung des Endgegners, wenn er in Sichtweite ist
+        }
+    }
+
     checkCollisions(){
         this.level.enemies.forEach((enemy) => {
             if(this.character.isColliding(enemy) ) {
@@ -65,7 +83,7 @@ class World {
         console.log(`Collected Coin at position: (${coin.x}, ${coin.y})`);
         this.character.coinsCollected += 1;
         this.level.coins.splice(index, 1);
-        this.statusCoin.setPercentage(this.character.coinsCollected * 10);
+        this.statusCoin.setPercentage(this.character.coinsCollected * 5);
     }
     
     
