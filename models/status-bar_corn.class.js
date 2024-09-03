@@ -1,4 +1,4 @@
-class StatusCorn extends StatusBar {
+class StatusCoin extends StatusBar {
     constructor() {
         super([
             './img/7_statusbars/1_statusbar/1_statusbar_coin/green/0.png',

@@ -8,7 +8,7 @@ class StatusBottle extends StatusBar {
             './img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/80.png',
             './img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/100.png'
         ]);
-        this.setPercentage(100);
+        this.setPercentage(0);
         this.x = 10; 
         this.y = 80; 
     }
