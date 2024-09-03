@@ -54,6 +54,15 @@ class MovableObject extends DrawableObject{
          this. y < mo.y + mo.height;
     }
 
+    isJumpingOn(mo) {
+        return (
+            this.y + this.height > mo.y && // Der Charakter ist über dem Huhn
+            this.y + this.height < mo.y + mo.height && // Der Charakter ist unter dem Huhn (nicht zu tief)
+            this.x + this.width > mo.x && // Horizontaler Überlappung
+            this.x < mo.x + mo.width // Horizontaler Überlappung
+        );
+    }
+
     hit(){
         this.energy -= 5;
         if(this.energy <= 0){

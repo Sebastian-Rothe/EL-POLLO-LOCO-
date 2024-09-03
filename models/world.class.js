@@ -47,11 +47,29 @@ class World {
         }
     }
 
-    checkCollisions(){
-        this.level.enemies.forEach((enemy) => {
-            if(this.character.isColliding(enemy) ) {
-                this.character.hit();
-                this.statusHealth.setPercentage(this.character.energy);
+    // checkCollisions(){
+    //     this.level.enemies.forEach((enemy) => {
+    //         if(this.character.isColliding(enemy) ) {
+    //             this.character.hit();
+    //             this.statusHealth.setPercentage(this.character.energy);
+    //         }
+    //     });
+    // }
+
+    checkCollisions() {
+        this.level.enemies.forEach((enemy ) => {
+            if (this.character.isColliding(enemy)) {
+                if (!enemy.isDead) {
+                    this.character.hit();
+                    this.statusHealth.setPercentage(this.character.energy);
+                } else if (enemy.isDead) {
+                    return
+                }
+            }
+
+            if (this.character.isJumpingOn(enemy) && !enemy.isDead) {
+                enemy.hit();
+
             }
         });
     }
