@@ -77,7 +77,7 @@ class World {
     }
 
     checkThrowObjects() {
-        const cooldownTime = 500; // Abklingzeit in Millisekunden (z.B. 500ms)
+        const cooldownTime = 500;
     
         if (this.keyboard.D && this.character.bottlesCollected > 0) {
             const currentTime = new Date().getTime();
@@ -87,8 +87,6 @@ class World {
                 this.throwableObjects.push(bottle);
                 this.character.bottlesCollected -= 1;
                 this.statusBottle.setPercentage(this.character.bottlesCollected * 20);
-    
-                // Setze die neue Abklingzeit
                 this.character.throwCooldown = currentTime + cooldownTime;
             }
         }
@@ -132,10 +130,10 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         
         this.ctx.translate(this.camera_x, 0);
-        this.addObjectsToMaps(this.level.backgroundObjects); // Hintergrund zuerst
+        this.addObjectsToMaps(this.level.backgroundObjects); 
         this.addObjectsToMaps(this.level.clouds);
-        this.addObjectsToMaps(this.level.bottles); // Bottles zeichnen
-        this.addObjectsToMaps(this.level.coins); // Coins zeichnen
+        this.addObjectsToMaps(this.level.bottles); 
+        this.addObjectsToMaps(this.level.coins); 
 
         this.ctx.translate(-this.camera_x, 0);
         // ------ Space for fixed objects------------

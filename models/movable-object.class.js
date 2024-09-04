@@ -74,6 +74,9 @@ class MovableObject extends DrawableObject{
     // }
 
     isJumpingOn(mo) {
+        if (mo instanceof Endboss) {
+            return false;
+        }
         return (
             this.y + this.height > mo.y && // Der Charakter ist über dem Huhn
             this.y + this.height < mo.y + mo.height && // Der Charakter ist unter dem Huhn (nicht zu tief)
@@ -83,7 +86,7 @@ class MovableObject extends DrawableObject{
     }
 
     hit(){
-        this.energy -= 1;
+        this.energy -= 5;
         if(this.energy <= 0){
             this.energy = 0;
         } else {
