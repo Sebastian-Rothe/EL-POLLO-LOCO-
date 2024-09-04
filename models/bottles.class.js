@@ -1,5 +1,10 @@
 class Bottles extends MovableObject{ 
- 
+    offset = {
+        top: 15,
+        left: 40,
+        right: 40,
+        bottom: 15
+      };
     Image_Bottle = [
         './img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png'
     ]

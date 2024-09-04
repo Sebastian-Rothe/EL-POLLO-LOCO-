@@ -28,14 +28,24 @@ class DrawableObject {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
-    drawFrame(ctx){
-        if(this instanceof Character || this instanceof Chicken || this instanceof Endboss || this instanceof Coins || this instanceof Bottles){
+ 
+  
+
+    drawCollisionFrame(ctx) {
+        if (this instanceof Character || this instanceof Chicken || this instanceof Endboss || this instanceof Coins || this instanceof Bottles) {
             ctx.beginPath();
             ctx.lineWidth = '3';
-            ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.strokeStyle = 'red';
+    
+            // Verwende die Kollisionsgrenzen, um das Rechteck zu zeichnen
+            const collisionX = this.x + this.offset.left;
+            const collisionY = this.y + this.offset.top;
+            const collisionWidth = this.width - this.offset.left - this.offset.right;
+            const collisionHeight = this.height - this.offset.top - this.offset.bottom;
+    
+            ctx.rect(collisionX, collisionY, collisionWidth, collisionHeight);
             ctx.stroke();
         }
     }
-
+    
 }

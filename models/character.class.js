@@ -8,6 +8,12 @@ class Character extends MovableObject {
   y = 20;
   standingTime = 0; // Zeit, die der Charakter steht
   standingTimer = null; // Timer für die stehende Zeit
+  offset = {
+    top: 120,
+    left: 20,
+    right: 30,
+    bottom: 20
+  };
   Images_Standing = [
     "./img/2_character_pepe/1_idle/idle/I-1.png",
     "./img/2_character_pepe/1_idle/idle/I-2.png",

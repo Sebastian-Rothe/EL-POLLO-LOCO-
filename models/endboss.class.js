@@ -9,6 +9,12 @@ class Endboss extends MovableObject {
     moving = false;
     hits = 0; // Anzahl der Treffer
     maxHits = 5; // Maximale Trefferanzahl, bevor der Endboss stirbt
+    offset = {
+        top: 90,
+        left: 20,
+        right: 30,
+        bottom: 20
+      };
 
     Images_Walking = [
         './img/4_enemie_boss_chicken/2_alert/G5.png',
