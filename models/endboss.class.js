@@ -4,6 +4,7 @@ class Endboss extends MovableObject {
     y = 55;
     minX = 2300; 
     maxX = 2700; 
+    isDead = false; // Lebenszustand hinzufügen
     movingForward = true;
     moving = false;
     hits = 0; // Anzahl der Treffer

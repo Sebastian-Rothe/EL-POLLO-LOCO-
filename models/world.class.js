@@ -28,17 +28,21 @@ class World {
             this.checkCollectibles(); // Neue Methode aufrufen
             this.checkEndbossVisibility(); // Überprüfen, ob der Endgegner sichtbar wird
             this.checkEndbossHit()
-        }, 200);
+        },   50);
     }
 
     checkEndbossHit() {
-        this.throwableObjects.forEach((bottle, bottleIndex) => {
-            if (this.level.endboss.isColliding(bottle)) { 
-                this.level.endboss.hit(); // Endboss wird getroffen
-                this.level.endboss.updateEndbossStatus(); // Statusleiste aktualisieren
-                this.throwableObjects.splice(bottleIndex, 1); // Flasche entfernen
-            }
-        });
+        if (this.throwableObjects) {
+            this.throwableObjects.forEach((bottle, bottleIndex) => {
+                if (this.level.endboss.isColliding(bottle)) { 
+                    
+                        this.level.endboss.hit(); // Endboss wird getroffen
+                    
+                    this.level.endboss.updateEndbossStatus(); // Statusleiste aktualisieren
+                    this.throwableObjects.splice(bottleIndex, 1); // Flasche entfernen
+                }
+            });
+    }   
     }
     
     checkEndbossVisibility() {
@@ -66,20 +70,27 @@ class World {
                     return
                 }
             }
-
             if (this.character.isJumpingOn(enemy) && !enemy.isDead) {
-                enemy.hit();
-
+                    enemy.hit();
             }
         });
     }
 
     checkThrowObjects() {
-        if (this.keyboard.D && this.character.bottlesCollected > 0) { // Überprüfe, ob 'D' gedrückt wird und es aufgesammelte Flaschen gibt
-            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
-            this.throwableObjects.push(bottle);
-            this.character.bottlesCollected -= 1; // Reduziere die Anzahl der aufgesammelten Flaschen
-            this.statusBottle.setPercentage(this.character.bottlesCollected * 20); // Aktualisiere den Status für die Flaschenanzeige
+        const cooldownTime = 500; // Abklingzeit in Millisekunden (z.B. 500ms)
+    
+        if (this.keyboard.D && this.character.bottlesCollected > 0) {
+            const currentTime = new Date().getTime();
+    
+            if (currentTime > this.character.throwCooldown) {
+                let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+                this.throwableObjects.push(bottle);
+                this.character.bottlesCollected -= 1;
+                this.statusBottle.setPercentage(this.character.bottlesCollected * 20);
+    
+                // Setze die neue Abklingzeit
+                this.character.throwCooldown = currentTime + cooldownTime;
+            }
         }
     }
 

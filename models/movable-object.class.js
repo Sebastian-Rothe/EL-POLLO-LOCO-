@@ -49,10 +49,16 @@ class MovableObject extends DrawableObject{
 
     isColliding(mo){
         return this.x + this.width > mo.x &&
-         this.y + this.height > mo.y && 
-         this.x < mo.x &&
-         this. y < mo.y + mo.height;
+                this.y + this.height > mo.y && 
+                this.x < mo.x &&
+                this. y < mo.y + mo.height;
     }
+    // isColliding(enemy) {
+    //     return this.x + this.width > enemy.x &&  // Prüft, ob die rechte Seite des Charakters die linke Seite des Gegners überschneidet
+    //            this.x < enemy.x + enemy.width && // Prüft, ob die linke Seite des Charakters die rechte Seite des Gegners überschneidet
+    //            this.y + this.height > enemy.y && // Prüft, ob die untere Seite des Charakters die obere Seite des Gegners überschneidet
+    //            this.y < enemy.y + enemy.height;  // Prüft, ob die obere Seite des Charakters die untere Seite des Gegners überschneidet
+    // }
 
     isJumpingOn(mo) {
         return (
@@ -64,7 +70,7 @@ class MovableObject extends DrawableObject{
     }
 
     hit(){
-        this.energy -= 5;
+        this.energy -= 1;
         if(this.energy <= 0){
             this.energy = 0;
         } else {

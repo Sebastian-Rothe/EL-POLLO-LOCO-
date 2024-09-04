@@ -2,6 +2,9 @@ class Character extends MovableObject {
   height = 280;
   coinsCollected = 0;
   bottlesCollected = 0;
+  isJumping = false; // Flag to track if the character is jumping
+  jumpingImageIndex = 0; // Index to track the current jumping image
+  throwCooldown = 0; // Abklingzeit in Millisekunden
   y = 20;
   standingTime = 0; // Zeit, die der Charakter steht
   standingTimer = null; // Timer für die stehende Zeit
@@ -98,13 +101,16 @@ class Character extends MovableObject {
       this.otherDirection = true;
       this.resetStandingDuration();
     }
-    if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+    if (this.world.keyboard.SPACE && !this.isAboveGround() && !this.isJumping) {
       this.jump();
-      this.resetStandingDuration(); // Reset standing duration when jumping
+      this.isJumping = true; // Set flag to true when jumping starts
+      this.jumpingImageIndex = 0; // Reset the index when the jump starts
+      this.resetStandingDuration();
     } else if (!this.isAboveGround()) {
       this.startStandingDuration(); // Start counting standing duration
     }
   }
+
 
   updateAnimation() {
     if (this.isDead()) {
@@ -112,14 +118,23 @@ class Character extends MovableObject {
     } else if (this.isHurt()) {
       this.playAnimation(this.Images_Hurt);
     } else if (this.isAboveGround()) {
-      this.playAnimation(this.Images_Jumping);
+      this.playJumpAnimationOnce(); // Play jumping animation once
     } else if (this.isStandingLong()) {
       this.playAnimation(this.Images_Standing_Long);
     } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
       this.playAnimation(this.Images_Walking);
     } else {
       this.playAnimation(this.Images_Standing);
+      this.isJumping = false; // Reset jumping flag when on the ground
     }
+  }
+
+  playJumpAnimationOnce() {
+    if (this.jumpingImageIndex < this.Images_Jumping.length) {
+      this.img = this.imageCache[this.Images_Jumping[this.jumpingImageIndex]];
+      this.jumpingImageIndex++;
+    }
+    // After the last image, keep showing the last frame until the jump is over
   }
 
   isStandingLong() {
