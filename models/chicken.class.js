@@ -4,7 +4,7 @@ class Chicken extends MovableObject {
     width = 70;
     isDead = false; // Lebenszustand hinzufügen
     offset = {
-        top: 10,
+        top: 15,
         left: 10,
         right: 10,
         bottom: 10

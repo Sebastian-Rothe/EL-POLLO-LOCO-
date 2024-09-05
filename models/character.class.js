@@ -10,9 +10,9 @@ class Character extends MovableObject {
   standingTimer = null; // Timer für die stehende Zeit
   offset = {
     top: 120,
-    left: 20,
-    right: 30,
-    bottom: 20
+    left: 30,
+    right: 35,
+    bottom: 40
   };
   Images_Standing = [
     "./img/2_character_pepe/1_idle/idle/I-1.png",
