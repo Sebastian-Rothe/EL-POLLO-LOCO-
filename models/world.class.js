@@ -3,7 +3,7 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
-        this.running = false;
+        this.running = false;   
 
         this.screenManager = new ScreenManager(
             canvas,
@@ -16,6 +16,7 @@ class World {
 
     startGame() {
         this.running = true;
+        initLevel(); // Hier das Level erst initialisieren, wenn das Spiel startet
         this.initializeGameObjects();
         this.setWorld();
         this.run();
@@ -40,14 +41,15 @@ class World {
     }
 
     resetGame() {
+        this.stopGame(); // Intervalle stoppen
         this.throwableObjects = [];
         this.character = null;
         this.statusHealth = null;
         this.statusCoin = null;
         this.statusBottle = null;
         this.statusEndboss = null;
-        this.level = null;
-        this.camera_x = 0;
+        this.level = null; // Level auf null setzen, wird im StartGame neu initialisiert
+        this.camera_x = 0; // Kamera zurücksetzen
     }
     run() {
         if (!this.running) return;
@@ -199,10 +201,9 @@ class World {
         
         this.ctx.translate(-this.camera_x, 0);
 
-        let self = this;
-        requestAnimationFrame(function() {
-            self.draw();
-        });
+        if (this.running) {
+            requestAnimationFrame(() => this.draw());
+        }
     };
 
     addObjectsToMaps(objects){
