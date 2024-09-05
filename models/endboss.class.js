@@ -120,10 +120,10 @@ class Endboss extends MovableObject {
     }
 
     alertPhase() {
-        this.playAnimation(this.Images_Alert); // Alarmanimation abspielen
+        this.playAnimation(this.Images_Alert);
         setTimeout(() => {
             this.startMoving();
-        }, 2000); // Nach 2 Sekunden beginnt der Endboss zu gehen
+        }, 2000); 
     }
 
     move() {
@@ -133,13 +133,12 @@ class Endboss extends MovableObject {
             this.moveBackward();
         }
 
-        // Grenzkontrolle für Bewegung
         if (this.x >= this.maxX) {
             this.movingForward = false;
-            this.attackPhase(); // Greife an, wenn die Grenze erreicht ist
+            this.attackPhase(); 
         } else if (this.x <= this.minX) {
             this.movingForward = true;
-            this.attackPhase(); // Greife an, wenn die Grenze erreicht ist
+            this.attackPhase(); 
         }
     }
 // right

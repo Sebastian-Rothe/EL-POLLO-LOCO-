@@ -17,7 +17,6 @@
     <script src="./models/drawable-object.class.js"></script>
     <script src="./models/collectable-object.class.js"></script>
     
-    
     <script src="./models/status-bar.class.js"></script>
     <script src="./models/status-bar_corn.class.js"></script>
     <script src="./models/status-bar_health.class.js"></script>
@@ -46,9 +45,16 @@
 
     <div id="full-screen">
         <h1 class="title">El Pollo Loco</h1>
-
         <canvas id="canvas" width="720" height="480"></canvas>
         <button id="startButton" style="display: none;">Start Game</button>
+        <div id="button-overlay">
+            <img src="./img/move_left.svg" alt="move_left.svg">
+            <img src="./img/move_right.svg" alt="move_right.svg">
+            <img src="./img/jump.svg" alt="jump.svg">
+            <img src="./img/throw.svg" alt="throw.svg">
+            <img src="./img/volume_up.svg" alt="volume_up.svg">
+            <img src="./img/volume_off.svg" alt="volume_off.svg">
+        </div> <!-- Overlay für die Buttons -->
     </div>
 
 </body>

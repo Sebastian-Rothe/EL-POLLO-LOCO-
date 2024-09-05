@@ -36,6 +36,24 @@ canvas {
 }
 
 
+#button-overlay {
+    margin-top: 160px;
+    position: absolute;
+    width: 720px;
+    height: 480px;
+    pointer-events: none; /* Verhindert, dass das Overlay selbst klickbar ist */
+}
+
+.button {
+    position: absolute;
+    width: 68px;
+    height:68px;
+    pointer-events: auto; /* Macht die Buttons klickbar */
+    background-color: transparent; /* Hintergrundfarbe transparent */
+    border: none; /* Keine Umrandung */
+}
+
+
 @media (max-width: 720px) {
     canvas{
         width: 100%;
