@@ -85,28 +85,28 @@ class Endboss extends MovableObject {
 
     die() {
         this.isDead = true;
-        this.playDeadAnimation(); // Sterbeanimation abspielen
+        this.playDeadAnimation(); 
         console.log("Endboss is dead!");
         this.moving = false;
-        // Weitere Logik wie das Entfernen des Endbosses kann hier hinzugefügt werden
+      
+        setInterval(() => {
+            world.endGame(true); // true signalisiert einen Sieg
+        }, 1000);
     }
 
     playHurtAnimation() {
-        this.moving = false; // Bewegung stoppen während der Hurt-Animation
-        this.playAnimation(this.Images_Hurt); // Hurt-Animation abspielen
+        this.moving = false; 
+        this.playAnimation(this.Images_Hurt); 
         setTimeout(() => {
             if (!this.isDead) {
-                this.moving = true; // Bewegung nach der Hurt-Animation fortsetzen, wenn der Endboss nicht tot ist
+                this.moving = true; 
             }
-        }, 2000); // Hurt-Animation für 1 Sekunde anzeigen
+        }, 2000); 
     }
 
     playDeadAnimation() {
-        this.moving = false; // Bewegung stoppen, da der Endboss tot ist
-        this.playAnimation(this.Images_Dead); // Dead-Animation abspielen
-        setTimeout(() => {
-            // Hier könnte man den Endboss aus dem Spiel entfernen oder weitere Logik einfügen
-        }, 2000); // Dead-Animation für 2 Sekunden anzeigen
+        this.moving = false; 
+        this.playAnimation(this.Images_Dead);
     }
 
     animate() {

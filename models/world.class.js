@@ -1,36 +1,85 @@
 class World {
-    character = new Character();
-    statusHealth = new StatusHealth(); 
-    statusCoin = new StatusCoin();      
-    statusBottle = new StatusBottle();  
-    statusEndboss = new StatusEndboss(); 
-    
-    level = level1;
-    canvas;
-    ctx;
-    keyboard;
-    camera_x = 0;
-    throwableObjects = [];
-
-    constructor(canvas, keyboard){
+    constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
-        this.draw();
-        this.setWorld();
-        this.run();
-    }
-    
-    run(){
-        setInterval(() => {
-            this.checkCollisions();
-            this.checkThrowObjects();
-            this.checkCollectibles(); // Neue Methode aufrufen
-            this.checkEndbossVisibility(); // Überprüfen, ob der Endgegner sichtbar wird
-            this.checkEndbossHit()
-        },   50);
+        this.running = false;
+
+        this.screenManager = new ScreenManager(
+            canvas,
+            this.ctx,
+            () => this.startGame(),
+            () => this.restartGame()
+        );
+        this.screenManager.showStartScreen();
     }
 
+    startGame() {
+        this.running = true;
+        this.initializeGameObjects();
+        this.setWorld();
+        this.run();
+        this.draw();
+    }
+
+    initializeGameObjects() {
+        this.character = new Character();
+        this.statusHealth = new StatusHealth();
+        this.statusCoin = new StatusCoin();
+        this.statusBottle = new StatusBottle();
+        this.statusEndboss = new StatusEndboss();
+        this.level = level1;
+        this.camera_x = 0;
+        this.throwableObjects = [];
+    }
+
+    restartGame() {
+        this.running = false;
+        this.resetGame();
+        this.startGame();
+    }
+
+    resetGame() {
+        this.throwableObjects = [];
+        this.character = null;
+        this.statusHealth = null;
+        this.statusCoin = null;
+        this.statusBottle = null;
+        this.statusEndboss = null;
+        this.level = null;
+        this.camera_x = 0;
+    }
+    run() {
+        if (!this.running) return;
+        this.gameInterval = setInterval(() => {
+            this.checkCollisions();
+            this.checkThrowObjects();
+            this.checkCollectibles();
+            this.checkEndbossVisibility();
+            this.checkEndbossHit();
+            this.checkGameOver();
+        }, 50);
+    }
+    checkGameOver() {
+        if (this.character.energy <= 0) {
+            setTimeout(() => {
+                this.endGame(false); 
+            }, 1000);
+        } else if (this.endboss && this.endboss.isDead) {
+                this.endGame(true);
+        } 
+    }
+    
+
+    endGame(win) {
+        this.running = false;
+        this.stopGame();
+        win ? this.screenManager.showWinScreen() : this.screenManager.showGameOverScreen();
+    }
+
+    stopGame() {
+        clearInterval(this.gameInterval);
+    }
     checkEndbossHit() {
         if (this.throwableObjects) {
             this.throwableObjects.forEach((bottle, bottleIndex) => {
@@ -42,7 +91,7 @@ class World {
                     this.throwableObjects.splice(bottleIndex, 1); // Flasche entfernen
                 }
             });
-    }   
+        }   
     }
     
     checkEndbossVisibility() {
@@ -127,6 +176,7 @@ class World {
     };
 
     draw(){
+        if (!this.running) return;
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         
         this.ctx.translate(this.camera_x, 0);
