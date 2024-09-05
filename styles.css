@@ -3,7 +3,7 @@
     src: url('./fonts/zabars.ttf');
 }
 
-body{
+body {
     margin: 0;
     display: flex;
     justify-content: center;
@@ -13,76 +13,126 @@ body{
     background-image: url(./img/background_deser.png);
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center; 
+    background-position: center;
     font-family: 'zabars', Arial, Helvetica, sans-serif;
-    
 }
-h1{
+
+h1 {
     font-size: 10rem;
     letter-spacing: 8px;
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
     margin: 0;
 }
+
 canvas {
     display: block;
 }
 
-#full-screen{
+#full-screen {
     margin-top: 4%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative; /* Relativ positionieren für das Overlay */
 }
 
-
 #button-overlay {
-    margin-top: 160px;
     position: absolute;
-    width: 720px;
-    height: 480px;
+    top: 0; /* Overlay direkt über dem Canvas */
+    left: 0;
+    width: 100%; /* Overlay nimmt die gesamte Breite ein */
+    height: calc(100% - 10rem); /* Overlay nimmt die gesamte Höhe ein */
+    margin-top: 10rem;
     pointer-events: none; /* Verhindert, dass das Overlay selbst klickbar ist */
 }
 
-.button {
-    position: absolute;
+.mobile-button {
     width: 68px;
-    height:68px;
+    height: 68px;
     pointer-events: auto; /* Macht die Buttons klickbar */
-    background-color: transparent; /* Hintergrundfarbe transparent */
-    border: none; /* Keine Umrandung */
 }
 
+.button-left {
+    position: absolute;
+    left: 8px;
+    bottom: 8px;
+}
 
+.button-right {
+    position: absolute;
+    left: 72px;
+    bottom: 8px;
+}
+
+.button-jump {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+}
+
+.button-throw {
+    position: absolute;
+    right: 72px;
+    bottom: 8px;
+}
+
+.button-volume-up,
+.button-volume-off {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+}
+
+/* Medienanfragen bleiben unverändert */
 @media (max-width: 720px) {
-    canvas{
+    canvas {
         width: 100%;
     }
-    .title{
+
+    .title {
         font-size: 7rem;
     }
+    #button-overlay {
+        height: calc(100% - 7rem);
+        margin-top: 7rem;
+    }
 }
+
 @media (max-width: 520px) {
-   
-    .title{
+    .title {
         font-size: 5rem;
     }
-}
-@media (max-width: 420px) {
-   
-    .title{
-        display: none;
+    #button-overlay {
+        height: calc(100% - 5rem);
+        margin-top: 5rem;
     }
 }
+
+@media (max-width: 420px) {
+    .title {
+        display: none;
+    }
+    #button-overlay {
+        height: 100%;
+        margin-top: 0;
+    }
+}
+
 @media (max-height: 480px) {
-    canvas{
+    canvas {
         height: 100vh;
     }
-    .title{
+
+    .title {
         display: none;
     }
-    #full-screen{
+    #button-overlay {
+        height: 100%;
         margin-top: 0;
-     
+    }
+
+    #full-screen {
+        margin-top: 0;
     }
 }
