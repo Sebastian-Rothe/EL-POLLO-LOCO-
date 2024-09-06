@@ -1,11 +1,14 @@
 let canvas;
 let world;
 let keyboard;
+let soundManager;
 
 function init() {
   canvas = document.getElementById("canvas");
   keyboard = new Keyboard();
-  world = new World(canvas, keyboard);
-
+  soundManager = new SoundManager();
+  world = new World(canvas, keyboard, soundManager);
+  soundManager.playBackgroundMusic();
 }
+
 

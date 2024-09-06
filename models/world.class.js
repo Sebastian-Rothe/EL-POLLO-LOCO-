@@ -1,9 +1,10 @@
 class World {
-    constructor(canvas, keyboard) {
+    constructor(canvas, keyboard, soundManager) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.running = false;   
+        this.soundManager = soundManager;
 
         this.screenManager = new ScreenManager(
             canvas,
@@ -12,10 +13,12 @@ class World {
             () => this.restartGame()
         );
         this.screenManager.showStartScreen();
+     
     }
 
     startGame() {
         this.running = true;
+        this.soundManager.playBackgroundMusic(); 
         initLevel(); 
         this.initializeGameObjects();
         this.setWorld();
@@ -237,3 +240,5 @@ class World {
         this.ctx.restore(); 
     }
 }
+
+
