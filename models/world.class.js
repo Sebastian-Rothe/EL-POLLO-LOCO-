@@ -1,4 +1,10 @@
 class World {
+
+    coin_sound = new Audio ('audio/coin_picked.mp3');
+    bottle_pick_sound = new Audio ('audio/item_picked.mp3');
+    win_sound = new Audio ('audio/win.mp3');
+    chicken_killed = new Audio ('audio/chicken_killed.mp3');
+
     constructor(canvas, keyboard, soundManager) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -79,8 +85,16 @@ class World {
     endGame(win) {
         this.running = false;
         this.stopGame();
-        win ? this.screenManager.showWinScreen() : this.screenManager.showGameOverScreen();
+        if (win) {
+            if (this.win_sound.currentTime === 0) {
+                this.win_sound.play(); 
+            }
+            this.screenManager.showWinScreen(); 
+        } else {
+            this.screenManager.showGameOverScreen(); 
+        }
     }
+    
 
     stopGame() {
         clearInterval(this.gameInterval);
@@ -115,9 +129,10 @@ class World {
     // }
 
     checkCollisions() {
-        this.level.enemies.forEach((enemy ) => {
+        this.level.enemies.forEach((enemy) => {
             if (this.character.isJumpingOn(enemy) && !enemy.isDead) {
                     enemy.hit();
+                    this.chicken_killed.play();
                     return
             } else if (this.character.isColliding(enemy)) {
                 if (!enemy.isDead) {
@@ -132,7 +147,6 @@ class World {
 
     checkThrowObjects() {
         const cooldownTime = 500;
-    
         if (this.keyboard.D && this.character.bottlesCollected > 0) {
             const currentTime = new Date().getTime();
     
@@ -161,7 +175,7 @@ class World {
     
     collectCoin(index) {
         const coin = this.level.coins[index];
-        console.log(`Collected Coin at position: (${coin.x}, ${coin.y})`);
+        this.coin_sound.play();
         this.character.coinsCollected += 1;
         this.level.coins.splice(index, 1);
         this.statusCoin.setPercentage(this.character.coinsCollected * 5);
@@ -170,7 +184,7 @@ class World {
     
     collectBottle(index) {
         const bottle = this.level.bottles[index];
-        console.log(`Collected Bottle at position: (${bottle.x}, ${bottle.y})`); 
+        this.bottle_pick_sound.play();
         this.level.bottles.splice(index, 1);
         this.character.bottlesCollected += 1; 
         this.statusBottle.setPercentage(this.character.bottlesCollected * 20); 
