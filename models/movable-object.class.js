@@ -61,30 +61,6 @@ class MovableObject extends DrawableObject{
         
     }
 
-    isJumpingOn(mo) {
-        if (mo instanceof Endboss) {
-            return false;
-        }
-        return (
-            this.x + this.width > mo.x && // Horizontaler Überlappung
-            this.y + this.height > mo.y && // Der Charakter ist über dem Huhn
-            this.y + this.height < mo.y + mo.height && // Der Charakter ist unter dem Huhn (nicht zu tief)
-            this.x < mo.x + mo.width // Horizontaler Überlappung
-        );
-    }
-    // isJumpingOn(mo) {
-    //     if (mo instanceof Endboss) {
-    //         return false;
-    //     }
-    //     return (
-    //         this.x + this.width - (this.offset.right + 1) > mo.x + (mo.offset.left + 1) &&
-    //         this.y + this.height - (this.offset.bottom + 1)> mo.y + (mo.offset.top + 1) && 
-    //         this.y + (this.offset.top + 1) < mo.y + mo.height - (mo.offset.bottom + 1) &&
-    //         this.x + (this.offset.left + 1) < mo.x + mo.width - (mo.offset.right + 1) 
-    //     );
-    // }
-    
-    
     hit(){
         this.energy -= 5;
         if(this.energy <= 0){
