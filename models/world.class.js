@@ -16,7 +16,7 @@ class World {
 
     startGame() {
         this.running = true;
-        initLevel(); // Hier das Level erst initialisieren, wenn das Spiel startet
+        initLevel(); 
         this.initializeGameObjects();
         this.setWorld();
         this.run();
