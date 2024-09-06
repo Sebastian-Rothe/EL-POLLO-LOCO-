@@ -12,9 +12,7 @@ class SoundManager {
     }
 
     playBackgroundMusic() {
-        this.bgMusic.play().catch(error => {
-            console.log("Audio play failed:", error);
-        });
+        this.bgMusic.play()
     }
 
     setVolume(sound) {

@@ -71,6 +71,7 @@ class World {
             this.checkGameOver();
         }, 50);
     }
+
     checkGameOver() {
         if (this.character.energy <= 0) {
             setTimeout(() => {
@@ -81,7 +82,6 @@ class World {
         } 
     }
     
-
     endGame(win) {
         this.running = false;
         this.stopGame();
@@ -95,10 +95,10 @@ class World {
         }
     }
     
-
     stopGame() {
         clearInterval(this.gameInterval);
     }
+    
     checkEndbossHit() {
         if (this.throwableObjects) {
             this.throwableObjects.forEach((bottle, bottleIndex) => {
@@ -166,8 +166,9 @@ class World {
                 this.collectCoin(index);
             }
         });
+    
         this.level.bottles.forEach((bottle, index) => {
-            if (this.character.isColliding(bottle)) {
+            if (this.character.bottlesCollected < 5 && this.character.isColliding(bottle)) {
                 this.collectBottle(index);
             }
         });
