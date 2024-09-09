@@ -14,6 +14,8 @@ class Character extends MovableObject {
     right: 35,
     bottom: 40
   };
+  hasPlayedCharacterDeadSound = false; 
+
   Images_Standing = [
     "./img/2_character_pepe/1_idle/idle/I-1.png",
     "./img/2_character_pepe/1_idle/idle/I-2.png",
@@ -73,11 +75,9 @@ class Character extends MovableObject {
   ];
   world;
   speed = 10;
-  jump_sound = new Audio ('audio/jump.mp3');
-  hurt_sound = new Audio ('audio/hurt.mp3');
-  dead_sound = new Audio ('audio/dead.mp3');
 
-  constructor() {
+
+  constructor(soundManager) {
     super().loadImage("./img/2_character_pepe/2_walk/W-21.png");
     this.loadImages(this.Images_Walking);
     this.loadImages(this.Images_Jumping);
@@ -87,6 +87,7 @@ class Character extends MovableObject {
     this.loadImages(this.Images_Standing_Long);
     this.applyGravity();
     this.animate();
+    this.soundManager = soundManager;
   }
   animate() {
     setInterval(() => {
@@ -114,7 +115,8 @@ class Character extends MovableObject {
     }
     if (this.world.keyboard.SPACE && !this.isAboveGround() && !this.isJumping) {
       this.jump();
-      this.jump_sound.play();
+      // this.jump_sound.play();
+      this.soundManager.playSound('characterJump');
       this.isJumping = true; 
       this.jumpingImageIndex = 0; 
       this.resetStandingDuration();
@@ -127,11 +129,12 @@ class Character extends MovableObject {
   updateAnimation() {
     if (this.isDead()) {
       this.playAnimation(this.Images_Dead);
-      if (this.dead_sound.currentTime === 0) {
-        this.dead_sound.play(); 
+      if (!this.hasPlayedCharacterDeadSound) {
+        this.soundManager.playSound('characterDead'); 
       }
+      this.hasPlayedCharacterDeadSound = true;
     } else if (this.isHurt()) {
-      this.hurt_sound.play();
+      this.soundManager.playSound('characterHurt');
       this.playAnimation(this.Images_Hurt);
     } else if (this.isAboveGround()) {
       this.playJumpAnimationOnce(); 
@@ -144,6 +147,7 @@ class Character extends MovableObject {
       this.isJumping = false; 
     }
   }
+
 
 
   

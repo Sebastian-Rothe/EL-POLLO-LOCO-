@@ -1,16 +1,16 @@
 class World {
 
-    coin_sound = new Audio('audio/coin_picked.mp3');
-    bottle_pick_sound = new Audio('audio/item_picked.mp3');
-    win_sound = new Audio('audio/win.mp3');
-    chicken_killed = new Audio('audio/chicken_killed.mp3');
+    // coin_sound = new Audio('audio/coin_picked.mp3');
+    // bottle_pick_sound = new Audio('audio/item_picked.mp3');
+    // win_sound = new Audio('audio/win.mp3');
+    // chicken_killed = new Audio('audio/chicken_killed.mp3');
 
-    constructor(canvas, keyboard, soundManager) {
+    constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.running = false;
-        this.soundManager = soundManager;
+        this.soundManager = new SoundManager();
 
         this.screenManager = new ScreenManager(
             canvas,
@@ -19,6 +19,7 @@ class World {
             () => this.restartGame()
         );
         this.screenManager.showStartScreen();
+        this.winSoundPlayed = false;  
     }
 
     startGame() {
@@ -32,7 +33,7 @@ class World {
     }
 
     initializeGameObjects() {
-        this.character = new Character();
+        this.character = new Character(this.soundManager);
         this.statusHealth = new StatusHealth();
         this.statusCoin = new StatusCoin();
         this.statusBottle = new StatusBottle();
@@ -85,8 +86,9 @@ class World {
         this.running = false;
         this.stopGame();
         if (win) {
-            if (this.win_sound.currentTime === 0) {
-                this.win_sound.play();
+            if (!this.winSoundPlayed) { 
+                this.soundManager.playSound('winSound');
+                this.winSoundPlayed = true;  
             }
             this.screenManager.showWinScreen();
         } else {
@@ -126,15 +128,19 @@ class World {
             this.handleCharacterDamage();
         }
     }
+    
+    isCharacterAbove(enemy) {
+        return this.character.y + this.character.height < enemy.y + enemy.height;
+    }
+    
+    handleEnemyJumpedOn(enemy) {
+        enemy.hit();
+        this.soundManager.playSound('chickenKilled');
+    }
 
     handleEndbossCollision() {
         this.character.hit();
         this.statusHealth.setPercentage(this.character.energy);
-    }
-
-    handleEnemyJumpedOn(enemy) {
-        enemy.hit();
-        this.chicken_killed.play();
     }
 
     handleCharacterDamage() {
@@ -159,18 +165,16 @@ class World {
     handleEndbossHit(bottleIndex, enemy) {
         enemy.hit(); 
         this.throwableObjects.splice(bottleIndex, 1); 
-        this.bottle_pick_sound.play();
+        // this.bottle_pick_sound.play();
+        // this.soundManager.playSound('bottlePickSound');
     }
 
     handleEnemyHitByBottle(bottleIndex, enemy) {
         enemy.hit();
         this.throwableObjects.splice(bottleIndex, 1);
-        this.chicken_killed.play();
+        this.soundManager.playSound('chickenKilled');
     }
 
-    isCharacterAbove(enemy) {
-        return this.character.y + this.character.height < enemy.y + enemy.height;
-    }
 
     checkThrowObjects() {
         const cooldownTime = 500;
@@ -203,7 +207,7 @@ class World {
 
     collectCoin(index) {
         const coin = this.level.coins[index];
-        this.coin_sound.play();
+        this.soundManager.playSound('coinSound');
         this.character.coinsCollected += 1;
         this.level.coins.splice(index, 1);
         this.statusCoin.setPercentage(this.character.coinsCollected * 5);
@@ -211,7 +215,7 @@ class World {
 
     collectBottle(index) {
         const bottle = this.level.bottles[index];
-        this.bottle_pick_sound.play();
+        this.soundManager.playSound('bottlePickSound');
         this.level.bottles.splice(index, 1);
         this.character.bottlesCollected += 1;
         this.statusBottle.setPercentage(this.character.bottlesCollected * 20);
