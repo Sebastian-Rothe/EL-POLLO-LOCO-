@@ -12,6 +12,12 @@ function initLevel() {
       new Chicken(),
       new Chicken(),
       new Chicken(),
+      new Chicken(),
+      new Chicken(),
+      new Chicken(),
+      new Chicken(),
+      new Chicken(),
+      new Chicken()
     ]),
 
     (clouds = [
@@ -32,9 +38,9 @@ function initLevel() {
       new Coins(1100, 200),
       new Coins(1300, 150),
       new Coins(1500, 100),
-      new Coins(1700, 250), // Neue Coin
-      new Coins(1900, 220), // Neue Coin
-      new Coins(2100, 200), // Neue Coin
+      new Coins(1700, 250), 
+      new Coins(1900, 220), 
+      new Coins(2100, 200), 
     ]),
 
     (bottles = [
@@ -42,9 +48,9 @@ function initLevel() {
       new Bottles(1400, 120),
       new Bottles(1700, 120),
       new Bottles(-400, 320),
-      new Bottles(1900, 200), // Neue Bottle
-      new Bottles(2100, 200), // Neue Bottle
-      new Bottles(2300, 220), // Neue Bottle
+      new Bottles(1900, 200),
+      new Bottles(2100, 200), 
+      new Bottles(2300, 220), 
     ]),
 
     (backgroundObjects = [

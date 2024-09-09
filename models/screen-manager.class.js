@@ -55,8 +55,8 @@ class ScreenManager {
         const button = document.createElement('button');
         button.innerText = text;
         button.onclick = callback;
-        button.classList.add('start-button'); // CSS-Klasse hinzufügen
-        document.getElementById('full-screen').appendChild(button); // Button zum full-screen Div hinzufügen
+        button.classList.add('start-button'); 
+        document.getElementById('fullscreen').appendChild(button); 
         this.currentButton = button; 
     }
     

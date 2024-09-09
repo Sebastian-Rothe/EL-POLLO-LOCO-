@@ -8,7 +8,5 @@ function init() {
   keyboard = new Keyboard();
   soundManager = new SoundManager();
   world = new World(canvas, keyboard, soundManager);
-  soundManager.playBackgroundMusic();
 }
-
 

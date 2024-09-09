@@ -1,8 +1,8 @@
 class MovableObject extends DrawableObject{ 
     speed = 0.15;
     otherDirection = false;
-    speedY = 0; // Fallgeschwindigkeit
-    acceleration = 2.5; // Beschleunigung der Fallgeschwindigkeit
+    speedY = 0;
+    acceleration = 2.5;
     energy = 100;
     lastHit = 0;
     offset = {
@@ -25,7 +25,7 @@ class MovableObject extends DrawableObject{
     }
 
     playAnimation(images){
-        let i = this.currentImage % images.length; // let i = 0 % 6; loop => if i === length then start over...
+        let i = this.currentImage % images.length; 
         let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
@@ -74,8 +74,8 @@ class MovableObject extends DrawableObject{
     }
 
     isHurt(){
-        let timePassed = new Date().getTime() - this.lastHit; // difference in ms
-        timePassed = timePassed / 1000; // difference in sec
+        let timePassed = new Date().getTime() - this.lastHit; 
+        timePassed = timePassed / 1000; 
         return timePassed < 1;
 
     }

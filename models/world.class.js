@@ -67,7 +67,6 @@ class World {
             this.checkThrowObjects();
             this.checkCollectibles();
             this.checkEndbossVisibility();
-            // this.checkEndbossHit();
             this.checkGameOver();
         }, 50);
     }
@@ -99,16 +98,7 @@ class World {
         clearInterval(this.gameInterval);
     }
 
-    // checkEndbossHit() {
-    //     this.throwableObjects.forEach((bottle, bottleIndex) => {
-    //         if (this.level.endboss.isColliding(bottle)) {
-    //             this.level.endboss.hit();
-    //             this.level.endboss.updateEndbossStatus();
-    //             this.throwableObjects.splice(bottleIndex, 1);
-    //         }
-    //     });
-    // }
-
+ 
     checkEndbossVisibility() {
         if (this.character.x > 2100 && !this.level.enemies[0].moving) {
             this.level.enemies[0].startMoving();

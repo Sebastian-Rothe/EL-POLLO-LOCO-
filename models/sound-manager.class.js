@@ -2,26 +2,25 @@ class SoundManager {
     constructor() {
         this.bgMusic = new Audio('audio/background.mp3');
         this.bgMusic.loop = true;
-        this.bgMusic.volume = 0.5; // Standard Lautstärke
+        this.bgMusic.volume = 0.5; 
         this.volumeStates = ['off', 'low', 'high'];
-        this.currentVolumeState = 1; // Start mit Lautstärke 'off'
+        this.currentVolumeState = 1; 
 
         this.updateVolumeButton();
         this.addVolumeButtonListeners();
-        this.playBackgroundMusic(); // Musik sofort abspielen, wenn SoundManager erstellt wird
     }
 
     playBackgroundMusic() {
-        this.bgMusic.play()
+        this.bgMusic.play();
     }
 
     setVolume(sound) {
         if (sound === 'off') {
             this.bgMusic.volume = 0;
         } else if (sound === 'low') {
-            this.bgMusic.volume = 0.3; // Leise
+            this.bgMusic.volume = 0.3; 
         } else if (sound === 'high') {
-            this.bgMusic.volume = 1.0; // Laut
+            this.bgMusic.volume = 1.0; 
         }
     }
 

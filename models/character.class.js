@@ -2,12 +2,12 @@ class Character extends MovableObject {
   height = 280;
   coinsCollected = 0;
   bottlesCollected = 0;
-  isJumping = false; // Flag to track if the character is jumping
-  jumpingImageIndex = 0; // Index to track the current jumping image
-  throwCooldown = 0; // Abklingzeit in Millisekunden
+  isJumping = false; 
+  jumpingImageIndex = 0; 
+  throwCooldown = 0; 
   y = 20;
-  standingTime = 0; // Zeit, die der Charakter steht
-  standingTimer = null; // Timer für die stehende Zeit
+  standingTime = 0; 
+  standingTimer = null; 
   offset = {
     top: 120,
     left: 30,
@@ -115,11 +115,11 @@ class Character extends MovableObject {
     if (this.world.keyboard.SPACE && !this.isAboveGround() && !this.isJumping) {
       this.jump();
       this.jump_sound.play();
-      this.isJumping = true; // Set flag to true when jumping starts
-      this.jumpingImageIndex = 0; // Reset the index when the jump starts
+      this.isJumping = true; 
+      this.jumpingImageIndex = 0; 
       this.resetStandingDuration();
     } else if (!this.isAboveGround()) {
-      this.startStandingDuration(); // Start counting standing duration
+      this.startStandingDuration(); 
     }
   }
 
@@ -134,14 +134,14 @@ class Character extends MovableObject {
       this.hurt_sound.play();
       this.playAnimation(this.Images_Hurt);
     } else if (this.isAboveGround()) {
-      this.playJumpAnimationOnce(); // Play jumping animation once
+      this.playJumpAnimationOnce(); 
     } else if (this.isStandingLong()) {
       this.playAnimation(this.Images_Standing_Long);
     } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
       this.playAnimation(this.Images_Walking);
     } else {
       this.playAnimation(this.Images_Standing);
-      this.isJumping = false; // Reset jumping flag when on the ground
+      this.isJumping = false; 
     }
   }
 
@@ -152,11 +152,11 @@ class Character extends MovableObject {
       this.img = this.imageCache[this.Images_Jumping[this.jumpingImageIndex]];
       this.jumpingImageIndex++;
     }
-    // After the last image, keep showing the last frame until the jump is over
+
   }
 
   isStandingLong() {
-    return this.standingDuration >= 4000; // 4 Sekunden
+    return this.standingDuration >= 4000; 
   }
 
   startStandingDuration() {
@@ -170,7 +170,7 @@ class Character extends MovableObject {
   resetStandingDuration() {
     clearInterval(this.standingTimer);
     this.standingTimer = null;
-    this.standingDuration = 0; // Setze die Zeit zurück
+    this.standingDuration = 0; 
   }
 }
 
