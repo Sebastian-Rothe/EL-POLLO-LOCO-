@@ -28,7 +28,7 @@ class Keyboard {
             if (e.keyCode == 40) {
             keyboard.DOWN = true;
             }
-            if (e.keyCode == 16) {
+            if (e.keyCode == 82) {
             keyboard.D = true;
             }
         });
@@ -49,7 +49,7 @@ class Keyboard {
             if (e.keyCode == 40) {
             keyboard.DOWN = false;
             }
-            if (e.keyCode == 16) {
+            if (e.keyCode == 82) {
             keyboard.D = false;
             }
         });
