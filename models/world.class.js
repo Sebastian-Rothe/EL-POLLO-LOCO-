@@ -179,7 +179,9 @@ class World {
     }
     
     isCharacterAbove(enemy) {
-        return this.character.y + this.character.height <= enemy.y + enemy.height;
+        return this.character.y + this.character.height <= enemy.y + enemy.height && 
+               this.character.speedY <= 0;  
+               
     }
     
     handleEnemyJumpedOn(enemy) {
