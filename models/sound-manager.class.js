@@ -36,15 +36,21 @@ class SoundManager {
     playBackgroundMusic(){
         this.bgMusic.play();
     }
-    setVolume(sound) {
-        if (sound === 'off') {
-            this.bgMusic.volume = 0;
-        } else if (sound === 'low') {
-            this.bgMusic.volume = 0.3; 
-        } else if (sound === 'high') {
-            this.bgMusic.volume = 1.0; 
+    setVolume(volumeState) {
+        let volumeLevel;
+        if (volumeState === 'off') {
+          volumeLevel = 0;
+        } else if (volumeState === 'low') {
+          volumeLevel = 0.3;
+        } else if (volumeState === 'high') {
+          volumeLevel = 1.0;
         }
-    }
+
+        this.bgMusic.volume = volumeLevel;
+        Object.values(this.sounds).forEach((sound) => {
+          sound.volume = volumeLevel;
+        });
+      }
 
     updateVolumeButton() {
         document.getElementById('button-volume-up').style.display = 'none';
