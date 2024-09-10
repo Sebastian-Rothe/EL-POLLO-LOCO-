@@ -99,6 +99,7 @@ class World {
         this.addToMap(this.statusEndboss);
 
         this.ctx.translate(this.camera_x, 0);
+
         this.addToMap(this.character);
         this.addObjectsToMaps(this.level.enemies);
         this.addObjectsToMaps(this.throwableObjects);
@@ -209,6 +210,7 @@ class World {
                     } else {
                         this.handleEnemyHitByBottle(bottleIndex, enemy);
                     }
+                    bottle.playSplashAnimation(); // will noch nicht!!!!
                 }
             });
         });
