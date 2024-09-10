@@ -150,15 +150,6 @@ class World {
         this.ctx.restore();
     }
 
-    // checkGameOver() {
-    //     if (this.character.energy <= 0) {
-    //         setTimeout(() => {
-    //             this.endGame(false);
-    //         }, 1000);
-    //     } else if (this.endboss && this.endboss.isDead) {
-    //         this.endGame(true);
-    //     }
-    // }
     checkGameOver() {
         if (this.character.energy <= 0 && this.running) {
             setTimeout(() => {
@@ -169,11 +160,6 @@ class World {
         }
     }
     
-
-
-
-
-
 
     checkEndbossVisibility() {
         if (this.character.x > 2100 && !this.level.enemies[0].moving) {
@@ -224,6 +210,7 @@ class World {
 
     detectThrowableCollisions() {
         this.throwableObjects.forEach((bottle, bottleIndex) => {
+          
             this.level.enemies.forEach((enemy) => {
                 if (bottle.isColliding(enemy)) {
                     if (enemy instanceof Endboss) {
@@ -256,7 +243,7 @@ class World {
             const currentTime = new Date().getTime();
 
             if (currentTime > this.character.throwCooldown) {
-                let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+                let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100, this.soundManager);
                 this.throwableObjects.push(bottle);
                 this.character.bottlesCollected -= 1;
                 this.statusBottle.setPercentage(this.character.bottlesCollected * 20);

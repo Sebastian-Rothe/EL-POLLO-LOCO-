@@ -9,7 +9,8 @@ class SoundManager {
         coinSound: new Audio('audio/coin_picked.mp3'),
         bottlePickSound: new Audio('audio/item_picked.mp3'),
         winSound: new Audio('audio/win.mp3'),
-        chickenKilled: new Audio('audio/chicken_killed.mp3')
+        chickenKilled: new Audio('audio/chicken_killed.mp3'),
+        throwSound: new Audio ('audio/throw.mp3')
       
     }
     
