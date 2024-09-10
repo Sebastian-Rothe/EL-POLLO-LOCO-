@@ -40,16 +40,7 @@ class World {
 
     restartGame() {
         this.running = false;
-        this.resetGame();
         this.startGame();
-    }
-
-    resetGame() {
-       
-        this.camera_x = 0;
-       
-
-
     }
 
     run() {
@@ -60,7 +51,7 @@ class World {
             this.checkCollectibles();
             this.checkEndbossVisibility();
             this.checkGameOver();
-        }, 50);
+        }, 10);
     }
 
  
@@ -84,7 +75,6 @@ class World {
       }
     stopGame() {
         this.clearAllIntervals()
-        // clearInterval(this.gameInterval);
     }
 
     setWorld() {
@@ -160,7 +150,6 @@ class World {
         }
     }
     
-
     checkEndbossVisibility() {
         if (this.character.x > 2100 && !this.level.enemies[0].moving) {
             this.level.enemies[0].startMoving();
