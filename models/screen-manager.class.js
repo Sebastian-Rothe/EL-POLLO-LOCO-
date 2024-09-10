@@ -27,6 +27,16 @@ class ScreenManager {
             this.restartGameCallback();
         });
     }
+    // showGameOverScreen() {
+    //     this.currentScreen = 'gameOver';
+    //     this.clearScreen();
+    //     this.drawImage('./img/9_intro_outro_screens/game_over/oh no you lost!.png');
+        
+    //     this.createButton('Play Again', () => {
+    //         this.removeCurrentButton();
+    //         location.reload();  // Statt der manuellen Neustartlogik die Seite neu laden
+    //     });
+    // }
 
     showWinScreen() {
         this.currentScreen = 'win';
