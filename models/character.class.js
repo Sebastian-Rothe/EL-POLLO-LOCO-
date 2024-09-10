@@ -2,7 +2,6 @@ class Character extends MovableObject {
   height = 280;
   coinsCollected = 0;
   bottlesCollected = 0;
-  isJumping = false; 
   jumpingImageIndex = 0; 
   throwCooldown = 0; 
   y = 20;
@@ -113,11 +112,9 @@ class Character extends MovableObject {
       this.otherDirection = true;
       this.resetStandingDuration();
     }
-    if (this.world.keyboard.SPACE && !this.isAboveGround() && !this.isJumping) {
+    if (this.world.keyboard.SPACE && !this.isAboveGround()) {
       this.jump();
-      // this.jump_sound.play();
       this.soundManager.playSound('characterJump');
-      this.isJumping = true; 
       this.jumpingImageIndex = 0; 
       this.resetStandingDuration();
     } else if (!this.isAboveGround()) {
@@ -131,8 +128,8 @@ class Character extends MovableObject {
       this.playAnimation(this.Images_Dead);
       if (!this.hasPlayedCharacterDeadSound) {
         this.soundManager.playSound('characterDead'); 
+        this.hasPlayedCharacterDeadSound = true;
       }
-      this.hasPlayedCharacterDeadSound = true;
     } else if (this.isHurt()) {
       this.soundManager.playSound('characterHurt');
       this.playAnimation(this.Images_Hurt);
