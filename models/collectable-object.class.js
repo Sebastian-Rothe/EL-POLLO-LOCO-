@@ -1,19 +1,19 @@
-class CollectableObject extends DrawableObject{
+// class CollectableObject extends DrawableObject{
 
-    width = 100; 
-    height = 100; 
+//     width = 100; 
+//     height = 100; 
 
-    constructor(){
-        super();
-    }
+//     constructor(){
+//         super();
+//     }
 
-}
+// }
 
 
-class Hearts extends CollectableObject{
+// class Hearts extends CollectableObject{
 
-    constructor(){
-        super();
-    }
+//     constructor(){
+//         super();
+//     }
 
-}
+// }

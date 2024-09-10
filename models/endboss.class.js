@@ -4,11 +4,11 @@ class Endboss extends MovableObject {
     y = 55;
     minX = 2300; 
     maxX = 2700; 
-    isDead = false; // Lebenszustand hinzufügen
+    isDead = false; 
     movingForward = true;
     moving = false;
-    hits = 0; // Anzahl der Treffer
-    maxHits = 5; // Maximale Trefferanzahl, bevor der Endboss stirbt
+    hits = 0; 
+    maxHits = 5; 
     offset = {
         top: 90,
         left: 20,
@@ -90,7 +90,7 @@ class Endboss extends MovableObject {
         this.moving = false;
       
         setInterval(() => {
-            world.endGame(true); // true signalisiert einen Sieg
+            world.endGame(true); 
         }, 1000);
     }
 
@@ -116,7 +116,7 @@ class Endboss extends MovableObject {
                 this.move();
                 this.playAnimation(this.Images_Walking);
             }
-        }, 1000 / 60); // 60 FPS Animation
+        }, 1000 / 60); 
     }
 
     alertPhase() {
@@ -143,25 +143,25 @@ class Endboss extends MovableObject {
     }
 // right
     moveForward() {
-        this.speed = 1; // langsame Vorwärtsbewegung
+        this.speed = 1; 
         this.x += this.speed;
     }
 // left
     moveBackward() {
-        this.speed = Math.random() * 10 + 10; // schnellere Rückwärtsbewegung mit zufälliger Geschwindigkeit zwischen 3 und 8
+        this.speed = Math.random() * 10 + 10; 
         this.x -= this.speed;
     }
 
     startMoving() {
         setTimeout(() => {
             this.moving = true;
-        }, 2000); // Beginnt die Bewegung 2 Sekunden, nachdem der Spieler den Endboss sehen kann
+        }, 2000); 
     }
     attackPhase() {
-        this.moving = false; // Stoppe die Bewegung während des Angriffs
-        this.playAnimation(this.Images_Attack); // Angriffsanimation abspielen
+        this.moving = false; 
+        this.playAnimation(this.Images_Attack);
         setTimeout(() => {
-            this.moving = true; // Bewegung nach dem Angriff fortsetzen
-        }, 1000); // Angriff dauert 1 Sekunde
+            this.moving = true; 
+        }, 1000); 
     }
 }

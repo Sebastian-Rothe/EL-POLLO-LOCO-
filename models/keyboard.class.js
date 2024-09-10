@@ -8,7 +8,7 @@ class Keyboard {
 
     constructor(){
         this.keyboardEvents();
-        // this.mobileButtonEvents();
+        this.mobileButtonEvents();
     }
 
     keyboardEvents() {

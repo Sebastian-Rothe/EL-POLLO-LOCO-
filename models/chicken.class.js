@@ -2,7 +2,7 @@ class Chicken extends MovableObject {
     y = 350;
     height = 70;
     width = 70;
-    isDead = false; // Lebenszustand hinzufügen
+    isDead = false; 
     offset = {
         top: 15,
         left: 10,
@@ -29,22 +29,22 @@ class Chicken extends MovableObject {
 
     animate() {
         setInterval(() => {   
-            if (!this.isDead) { // Nur bewegen, wenn das Huhn nicht tot ist
+            if (!this.isDead) {
             this.moveLeft();
             }
         }, 1000 / 60);
         
         setInterval(() =>{
-            if (!this.isDead) { // Nur animieren, wenn das Huhn nicht tot ist
+            if (!this.isDead) { 
                 this.playAnimation(this.Images_Walking);
             }
         }, 100);
     };
 
     hit() {
-        this.isDead = true; // Huhn wird "tot"
+        this.isDead = true; 
         console.log('chicken is dead');
-        this.loadImage(this.Image_Dead[0]); // Bild auf tot setzen
+        this.loadImage(this.Image_Dead[0]);
         this.y = 360;
     }
     

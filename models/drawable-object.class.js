@@ -34,7 +34,6 @@ class DrawableObject {
             ctx.lineWidth = '3';
             ctx.strokeStyle = 'red';
     
-            // Verwende die Kollisionsgrenzen, um das Rechteck zu zeichnen
             const collisionX = this.x + this.offset.left;
             const collisionY = this.y + this.offset.top;
             const collisionWidth = this.width - this.offset.left - this.offset.right;
