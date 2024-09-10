@@ -234,7 +234,7 @@ class World {
             const currentTime = new Date().getTime();
 
             if (currentTime > this.character.throwCooldown) {
-                let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100, this.soundManager);
+                let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100, this.soundManager, this.character.otherDirection);
                 this.throwableObjects.push(bottle);
                 this.character.bottlesCollected -= 1;
                 this.statusBottle.setPercentage(this.character.bottlesCollected * 20);
