@@ -71,7 +71,7 @@ class ThrowableObject extends MovableObject {
             }
             splashYPosition += 5; // Optional: Bewege die Splash-Animation nach unten
             this.y = splashYPosition; // Aktualisiere die Y-Position
-        }, 100); // Setze die Frame-Rate auf 10 FPS (100ms)
+        }, 1000); // Setze die Frame-Rate auf 10 FPS (100ms)
     }
     
     

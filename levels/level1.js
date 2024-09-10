@@ -44,13 +44,21 @@ function initLevel() {
     ]),
 
     (bottles = [
-      new Bottles(1200, 170),
-      new Bottles(1400, 120),
-      new Bottles(1700, 120),
-      new Bottles(-400, 320),
-      new Bottles(1900, 200),
-      new Bottles(2100, 200), 
-      new Bottles(2300, 220), 
+      new Bottles(1200, 325),
+      new Bottles(1400, 325),
+      new Bottles(1700, 325),
+      new Bottles(-400, 325),
+      new Bottles(1900, 325),
+      new Bottles(2100, 325),
+      new Bottles(2300, 325),
+      new Bottles(2500, 325),
+      new Bottles(2700, 325),
+      new Bottles(2900, 325),
+      new Bottles(-200, 325),
+      new Bottles(-300, 325),
+      new Bottles(-500, 325),
+      new Bottles(1800, 325),
+      new Bottles(1850, 325),
     ]),
 
     (backgroundObjects = [
