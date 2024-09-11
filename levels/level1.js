@@ -4,22 +4,21 @@ function initLevel() {
   level1 = new Level(
     (enemies = [
       new Endboss(),
-      // new ChickenSmall(),
-      // new ChickenSmall(),
-      // new ChickenSmall(),
-      // new ChickenSmall(),
-      // new ChickenSmall(),
-      // new Chicken(),
-      // new Chicken(),
-      // new Chicken(),
-      // new Chicken(),
-      // new Chicken(),
-      // new Chicken(),
-      // new Chicken(),
-      // new Chicken(),
-      // new Chicken()
+      new ChickenSmall(),
+      new ChickenSmall(),
+      new ChickenSmall(),
+      new ChickenSmall(),
+      new ChickenSmall(),
+      new Chicken(),
+      new Chicken(),
+      new Chicken(),
+      new Chicken(),
+      new Chicken(),
+      new Chicken(),
+      new Chicken(),
+      new Chicken(),
+      new Chicken(),
     ]),
-
     (clouds = [
       new Cloud(),
       new Cloud(),
@@ -29,7 +28,6 @@ function initLevel() {
       new Cloud(),
       new Cloud(),
     ]),
-
     (coins = [
       new Coins(300, 300),
       new Coins(500, 350),
@@ -38,11 +36,10 @@ function initLevel() {
       new Coins(1100, 200),
       new Coins(1300, 150),
       new Coins(1500, 100),
-      new Coins(1700, 250), 
-      new Coins(1900, 220), 
-      new Coins(2100, 200), 
+      new Coins(1700, 250),
+      new Coins(1900, 220),
+      new Coins(2100, 200),
     ]),
-
     (bottles = [
       new Bottles(1200, 325),
       new Bottles(1400, 325),
@@ -60,7 +57,6 @@ function initLevel() {
       new Bottles(1800, 325),
       new Bottles(1850, 325),
     ]),
-
     (backgroundObjects = [
       new BackgroundObject("./img/5_background/layers/air.png", -719),
       new BackgroundObject(

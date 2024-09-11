@@ -1,108 +1,119 @@
 class SoundManager {
-    
-    
-    sounds = {
-        bgMusic: new Audio('audio/background.mp3'),
-        characterJump: new Audio ('audio/jump.mp3'),
-        characterHurt: new Audio ('audio/hurt.mp3'),
-        characterDead: new Audio ('audio/dead.mp3'),
-        coinSound: new Audio('audio/coin_picked.mp3'),
-        bottlePickSound: new Audio('audio/item_picked.mp3'),
-        winSound: new Audio('audio/win.mp3'),
-        chickenKilled: new Audio('audio/chicken_killed.mp3'),
-        throwSound: new Audio ('audio/throw.mp3')
-      
-    }
-    
-    
-    constructor() {
-        this.bgMusic = new Audio('audio/background.mp3');
-        this.bgMusic.loop = true;
-        this.bgMusic.volume = 0.5; 
-        this.volumeStates = ['off', 'low', 'high'];
-        this.currentVolumeState = 1; 
-        this.updateVolumeButton();
-        this.addVolumeButtonListeners();
-    }
+  sounds = {
+    bgMusic: new Audio("audio/background.mp3"),
+    characterJump: new Audio("audio/jump.mp3"),
+    characterHurt: new Audio("audio/hurt.mp3"),
+    characterDead: new Audio("audio/dead.mp3"),
+    coinSound: new Audio("audio/coin_picked.mp3"),
+    bottlePickSound: new Audio("audio/item_picked.mp3"),
+    winSound: new Audio("audio/win.mp3"),
+    chickenKilled: new Audio("audio/chicken_killed.mp3"),
+    throwSound: new Audio("audio/throw.mp3"),
+  };
 
-    // playSound(soundName) {
-    //     const sound = this.sounds[soundName];
-    //     if (sound) {
-    //         sound.play();
-    //     } else {
-    //         console.error(`Sound ${soundName} not found!`);
-    //     }
-    // }
-    playSound(soundName) {
-        const sound = this.sounds[soundName];
-        if (sound) {
-            const clonedSound = sound.cloneNode(); // Erstellt eine Kopie des Sounds
-            clonedSound.play();                    // Spielt die Kopie ab
-        } else {
-            console.error(`Sound ${soundName} not found!`);
-        }
-    }
-    
-       // playSound(soundName) {
-    //     const sound = this.sounds[soundName];
-    //     if (sound) {
-    //         sound.pause();           // Stoppt den Sound, falls er noch spielt
-    //         sound.currentTime = 0;   // Setzt den Sound an den Anfang zurück
-    //         sound.play();            // Spielt den Sound erneut ab
-    //     } else {
-    //         console.error(`Sound ${soundName} not found!`);
-    //     }
-    // }
-    
+  /**
+   * Initializes the SoundManager with sound assets and volume controls.
+   * @constructor
+   */
+  constructor() {
+    this.bgMusic = new Audio("audio/background.mp3");
+    this.bgMusic.loop = true;
+    this.bgMusic.volume = 0.5;
+    this.volumeStates = ["off", "low", "high"];
+    this.currentVolumeState = 1;
+    this.updateVolumeButton();
+    this.addVolumeButtonListeners();
+  }
 
-    playBackgroundMusic(){
-        this.bgMusic.play();
-    }
-    setVolume(volumeState) {
-        let volumeLevel;
-        if (volumeState === 'off') {
-          volumeLevel = 0;
-        } else if (volumeState === 'low') {
-          volumeLevel = 0.3;
-        } else if (volumeState === 'high') {
-          volumeLevel = 1.0;
-        }
-
-        this.bgMusic.volume = volumeLevel;
-        Object.values(this.sounds).forEach((sound) => {
-          sound.volume = volumeLevel;
-        });
+  /**
+   * Plays a sound based on its name.
+   * @param {string} soundName - The name of the sound to play.
+   */
+  playSound(soundName) {
+    const sound = this.sounds[soundName];
+    if (sound) {
+      if (soundName === "characterHurt") {
+        sound.play();
+      } else {
+        const clonedSound = sound.cloneNode();
+        clonedSound.play();
       }
+    } else {
+      console.error(`Sound ${soundName} not found!`);
+    }
+  }
 
-    updateVolumeButton() {
-        document.getElementById('button-volume-up').style.display = 'none';
-        document.getElementById('button-volume-down').style.display = 'none';
-        document.getElementById('button-volume-off').style.display = 'none';
+  /**
+   * Plays the background music.
+   */
+  playBackgroundMusic() {
+    this.bgMusic.play();
+  }
 
-        if (this.currentVolumeState === 0) {
-            document.getElementById('button-volume-off').style.display = 'block';
-        } else if (this.currentVolumeState === 1) {
-            document.getElementById('button-volume-down').style.display = 'block';
-        } else {
-            document.getElementById('button-volume-up').style.display = 'block';
-        }
+  /**
+   * Sets the volume for the background music and sound effects.
+   * @param {string} volumeState - The desired volume state ('off', 'low', 'high').
+   */
+  setVolume(volumeState) {
+    let volumeLevel;
+    if (volumeState === "off") {
+      volumeLevel = 0;
+    } else if (volumeState === "low") {
+      volumeLevel = 0.3;
+    } else if (volumeState === "high") {
+      volumeLevel = 1.0;
     }
 
-    addVolumeButtonListeners() {
-        document.getElementById('button-volume-off').addEventListener('click', () => {
-            this.changeVolumeState();
-        });
-        document.getElementById('button-volume-down').addEventListener('click', () => {
-            this.changeVolumeState();
-        });
-        document.getElementById('button-volume-up').addEventListener('click', () => {
-            this.changeVolumeState();
-        });
-    }
+    this.bgMusic.volume = volumeLevel;
+    Object.values(this.sounds).forEach((sound) => {
+      sound.volume = volumeLevel;
+    });
+  }
 
-    changeVolumeState() {
-        this.currentVolumeState = (this.currentVolumeState + 1) % 3;
-        this.setVolume(this.volumeStates[this.currentVolumeState]);
-        this.updateVolumeButton();
+  /**
+   * Updates the visibility of volume control buttons based on the current volume state.
+   */
+  updateVolumeButton() {
+    document.getElementById("button-volume-up").style.display = "none";
+    document.getElementById("button-volume-down").style.display = "none";
+    document.getElementById("button-volume-off").style.display = "none";
+
+    if (this.currentVolumeState === 0) {
+      document.getElementById("button-volume-off").style.display = "block";
+    } else if (this.currentVolumeState === 1) {
+      document.getElementById("button-volume-down").style.display = "block";
+    } else {
+      document.getElementById("button-volume-up").style.display = "block";
     }
+  }
+
+  /**
+   * Adds event listeners to volume control buttons for changing the volume state.
+   */
+  addVolumeButtonListeners() {
+    document
+      .getElementById("button-volume-off")
+      .addEventListener("click", () => {
+        this.changeVolumeState();
+      });
+    document
+      .getElementById("button-volume-down")
+      .addEventListener("click", () => {
+        this.changeVolumeState();
+      });
+    document
+      .getElementById("button-volume-up")
+      .addEventListener("click", () => {
+        this.changeVolumeState();
+      });
+  }
+
+  /**
+   * Changes the current volume state and updates the volume and button display.
+   */
+  changeVolumeState() {
+    this.currentVolumeState = (this.currentVolumeState + 1) % 3;
+    this.setVolume(this.volumeStates[this.currentVolumeState]);
+    this.updateVolumeButton();
+  }
 }
