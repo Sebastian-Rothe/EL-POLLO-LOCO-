@@ -33,13 +33,66 @@ class ScreenManager {
     }
 
     showInstructions() {
-        // Logik zum Anzeigen der Anweisungen (z. B. Popup oder neues Screen)
-        console.log("Instructions clicked");
+        this.clearScreen(); 
+        const instructionsContent = document.createElement('div');
+        instructionsContent.classList.add('impressum-content');
+        instructionsContent.innerHTML = `
+            <span class="impressum-headline">Instructions</span>
+            <p>Move Left: Arrow Left (←) or A</p>
+            <p>Move Right: Arrow Right (→) or D</p>
+            <p>Jump: Spacebar</p>
+            <p>Throw: R</p> 
+        `;
+        const goBackButton = document.createElement('button');
+        goBackButton.innerText = 'Go Back';
+        goBackButton.classList.add('start-button');
+        goBackButton.onclick = () => {
+            instructionsContent.remove(); 
+            goBackButton.remove(); 
+            this.showStartScreen(); 
+        };
+    
+        document.getElementById('fullscreen').appendChild(instructionsContent);
+        document.getElementById('fullscreen').appendChild(goBackButton);
     }
+    
 
+    // showImpressum() {
+    //     this.clearScreen(); 
+    //     const impressumContent = document.createElement('div');
+    //     impressumContent.classList.add('impressum-content');
+    //     impressumContent.innerHTML = `
+    //         <span class="impressum-headline">Impressum</span>
+    //         <span>Sebastian Rothe</span>
+    //         <span>Mühlwehrstraße, 8</span>
+    //         <span>70488 Frankfurt Am Main</span>
+    //         <br>
+    //         <span>Kontakt</span>
+    //         <span>Telefon: 0176 52968778</span>
+    //         <span>E-Mail: sebi1995@gmx.at</span>
+    //         <br>
+    //         <span> Erstellt von impressum-generator.info - powered by abfindungshero.de </span>
+    //         <span>Angaben gemäß Par. 5 DDG</span>
+    //     `;
+    //     const goBackButton = document.createElement('button');
+    //     goBackButton.innerText = 'Go Back';
+    //     goBackButton.classList.add('start-button');
+    //     goBackButton.onclick = () => {
+    //         impressumContent.remove();
+    //         goBackButton.remove(); 
+    //         this.showStartScreen(); 
+    //     };
+
+    //     document.getElementById('fullscreen').appendChild(impressumContent);
+    //     document.getElementById('fullscreen').appendChild(goBackButton);
+    // }
     showImpressum() {
         this.clearScreen(); 
-        // Ein neues Div für das Impressum erstellen
+    
+        document.getElementById('button-volume-up').style.display = 'none';
+        document.getElementById('button-volume-down').style.display = 'none';
+        document.getElementById('button-volume-off').style.display = 'none';
+    
         const impressumContent = document.createElement('div');
         impressumContent.classList.add('impressum-content');
         impressumContent.innerHTML = `
@@ -56,20 +109,20 @@ class ScreenManager {
             <span>Angaben gemäß Par. 5 DDG</span>
         `;
     
-        // Einen "Go Back"-Button erstellen
         const goBackButton = document.createElement('button');
         goBackButton.innerText = 'Go Back';
         goBackButton.classList.add('start-button');
         goBackButton.onclick = () => {
-            impressumContent.remove(); // Entfernt das Impressum
-            goBackButton.remove(); // Entfernt den "Go Back"-Button
-            this.showStartScreen(); // Geht zurück zum Startbildschirm
+            impressumContent.remove();
+            goBackButton.remove(); 
+            this.showStartScreen(); 
+            document.getElementById('button-volume-off').style.display = 'block';
+            this.soundManager.updateVolumeButton(); 
         };
-    
-        // Impressum und Button über dem Canvas anzeigen
         document.getElementById('fullscreen').appendChild(impressumContent);
         document.getElementById('fullscreen').appendChild(goBackButton);
     }
+    
     
     showGameOverScreen() {
         this.currentScreen = 'gameOver';
