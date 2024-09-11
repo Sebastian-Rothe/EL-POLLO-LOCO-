@@ -4,20 +4,20 @@ function initLevel() {
   level1 = new Level(
     (enemies = [
       new Endboss(),
-      new ChickenSmall(),
-      new ChickenSmall(),
-      new ChickenSmall(),
-      new ChickenSmall(),
-      new ChickenSmall(),
-      new Chicken(),
-      new Chicken(),
-      new Chicken(),
-      new Chicken(),
-      new Chicken(),
-      new Chicken(),
-      new Chicken(),
-      new Chicken(),
-      new Chicken()
+      // new ChickenSmall(),
+      // new ChickenSmall(),
+      // new ChickenSmall(),
+      // new ChickenSmall(),
+      // new ChickenSmall(),
+      // new Chicken(),
+      // new Chicken(),
+      // new Chicken(),
+      // new Chicken(),
+      // new Chicken(),
+      // new Chicken(),
+      // new Chicken(),
+      // new Chicken(),
+      // new Chicken()
     ]),
 
     (clouds = [

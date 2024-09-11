@@ -145,9 +145,7 @@ class World {
             setTimeout(() => {
                 this.endGame(false);
             }, 1000);
-        } else if (this.endboss && this.endboss.isDead && this.running) {
-            this.endGame(true);
-        }
+        } 
     }
     
     checkEndbossVisibility() {
@@ -218,8 +216,6 @@ class World {
     handleEndbossHit(bottleIndex, enemy) {
         enemy.hit(); 
         this.throwableObjects.splice(bottleIndex, 1); 
-        // this.bottle_pick_sound.play();
-        // this.soundManager.playSound('bottlePickSound');
     }
 
     handleEnemyHitByBottle(bottleIndex, enemy) {

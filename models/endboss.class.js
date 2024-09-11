@@ -82,16 +82,25 @@ class Endboss extends MovableObject {
         let percentage = 100 - (this.hits / this.maxHits * 100);
         world.statusEndboss.setPercentage(percentage);
     }
-
+    clearAllIntervals(){
+        for(let i = 1; i < 9999; i++) window.clearInterval(i);
+      }
     die() {
         this.isDead = true;
         this.playDeadAnimation(); 
         console.log("Endboss is dead!");
         this.moving = false;
-      
-        setInterval(() => {
+        this.clearAllIntervals();
+        setTimeout(() => {
+            // Nach einer kurzen Verzögerung das Spiel beenden
             world.endGame(true); 
         }, 1000);
+    }
+
+    playDeadAnimation() {
+        this.moving = false; 
+        this.playAnimation(this.Images_Dead);
+ 
     }
 
     playHurtAnimation() {
@@ -101,13 +110,10 @@ class Endboss extends MovableObject {
             if (!this.isDead) {
                 this.moving = true; 
             }
-        }, 2000); 
+        }, 300); 
     }
 
-    playDeadAnimation() {
-        this.moving = false; 
-        this.playAnimation(this.Images_Dead);
-    }
+    
 
     animate() {
         this.alertPhase();
