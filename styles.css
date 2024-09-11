@@ -1,268 +1,293 @@
 @font-face {
-    font-family: 'zabars';
-    src: url('./fonts/zabars.ttf');
+  font-family: "zabars";
+  src: url("./fonts/zabars.ttf");
 }
 
 body {
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    height: 100vh;
-    width: 100vw;
-    background-image: url(./img/background_deser.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    font-family: 'zabars', Arial, Helvetica, sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  width: 100vw;
+  background-image: url(./img/background_deser.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: "zabars", Arial, Helvetica, sans-serif;
 }
 
 h1 {
-    font-size: 10rem;
-    letter-spacing: 8px;
-    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
-    margin: 0;
+  font-size: 10rem;
+  letter-spacing: 8px;
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+  margin: 0;
 }
 
 canvas {
-    display: block;
-    /* border: 1px solid rgb(237, 108, 52); */
-    border-radius: 8px;
+  display: block;
+  border-radius: 8px;
 }
 
 #fullscreen {
-    margin-top: 4%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative; /* Relativ positionieren für das Overlay */
+  margin-top: 4%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.overlay-warning {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: rgb(189, 78, 47);
+  font-size: 32px;
+  justify-content: center; 
+  align-items: center; 
+  z-index: 1000; 
 }
 
 .start-button {
-    position: absolute;
-    bottom: 8px; 
-    left: 50%;
-    transform: translateX(-50%); 
-    z-index: 1001; 
-    padding: 10px 20px; 
-    font-size: 1.9rem;
-    font-family: 'zabars', Arial, Helvetica, sans-serif;
-    background-color: rgb(247, 188, 99); 
-    border: 3px solid rgb(184, 97, 39); 
-    border-radius: 12px; 
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1001;
+  padding: 10px 20px;
+  font-size: 1.9rem;
+  font-family: "zabars", Arial, Helvetica, sans-serif;
+  background-color: rgb(247, 188, 99);
+  border: 3px solid rgb(184, 97, 39);
+  border-radius: 12px;
 }
 
 .start-button:hover {
-    cursor: pointer; 
-    background-color: rgb(184, 97, 39); 
+  cursor: pointer;
+  background-color: rgb(184, 97, 39);
 }
 
 #button-overlay {
-    position: absolute;
-    top: 0; 
-    left: 0;
-    width: 100%; 
-    height: calc(100% - 10rem);
-    margin-top: 10rem;
-
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 10rem);
+  margin-top: 10rem;
 }
 
 .mobile-button {
-    width: 68px;
-    height: 68px;
-    pointer-events: auto;
-    transition: filter 0.3s ease; 
+  width: 68px;
+  height: 68px;
+  pointer-events: auto;
+  transition: filter 0.3s ease;
 }
 
 .mobile-button:hover {
-    filter: brightness(0.5) invert(1); 
+  filter: brightness(0.5) invert(1);
 }
+
 .button-left {
-    position: absolute;
-    left: 8px;
-    bottom: 8px;
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
 }
 
 .button-right {
-    position: absolute;
-    left: 72px;
-    bottom: 8px;
+  position: absolute;
+  left: 72px;
+  bottom: 8px;
 }
 
 .button-jump {
-    position: absolute;
-    right: 8px;
-    bottom: 8px;
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
 }
 
 .button-throw {
-    position: absolute;
-    right: 72px;
-    bottom: 8px;
+  position: absolute;
+  right: 72px;
+  bottom: 8px;
 }
 
-.move-btn{
-    display: none;
+.move-btn {
+  display: none;
 }
 
 .button-volume-up,
 .button-volume-off {
-    position: absolute;
-    right: 8px;
-    top: 8px;
-    cursor: pointer;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  cursor: pointer;
 }
 
-.button-start-screen{
-    z-index: 2000;
-    background: none;
-    border: none;
-    font-family: 'zabars', Arial, Helvetica, sans-serif;
-    color: rgb(153, 69, 9);
-    font-size: 2.3rem;
-    position: absolute;
+.button-start-screen {
+  z-index: 2000;
+  background: none;
+  border: none;
+  font-family: "zabars", Arial, Helvetica, sans-serif;
+  color: rgb(153, 69, 9);
+  font-size: 2.3rem;
+  position: absolute;
 }
-.button-start-screen:hover{
-    cursor: pointer;
-    color: rgb(250, 199, 105);
+
+.button-start-screen:hover {
+  cursor: pointer;
+  color: rgb(250, 199, 105);
 }
-.impressum{
-    bottom: 16px;
-    right: 8%;
+
+.impressum {
+  bottom: 16px;
+  right: 8%;
 }
-.instructions{
-    bottom: 16px;
-    left: 8%;
+
+.instructions {
+  bottom: 16px;
+  left: 8%;
 }
+
 .impressum-content {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 5%; 
-    font-size: 1.8rem; 
-    border-radius: 5px;
-    margin-top: 5%; 
-    overflow: auto;
-    max-width: 90%; 
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5%;
+  font-size: 1.8rem;
+  border-radius: 5px;
+  margin-top: 5%;
+  overflow: auto;
+  max-width: 90%;
 }
 
 .impressum-content::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
-.impressum-content p{
-    margin-block-start: 0;
-    margin-block-end: 0;
-    margin: 4px;
+
+.impressum-content p {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin: 4px;
 }
+
 .impressum-headline {
-    margin-top: 24px;
-    font-size: 4rem; 
+  margin-top: 24px;
+  font-size: 4rem;
 }
 
 @media (max-width: 768px) {
-    .impressum-content {
-        font-size: 1.5rem; 
-        padding: 10%;
-    }
+  .impressum-content {
+    font-size: 1.5rem;
+    padding: 10%;
+  }
 
-    .impressum-headline {
-        font-size: 2.5rem; 
-    }
+  .impressum-headline {
+    font-size: 2.5rem;
+  }
 }
 
-
 @media (max-width: 720px) {
-    canvas {
-        width: 100%;
-    }
-
-    .title {
-        font-size: 7rem;
-    }
-    #button-overlay {
-        height: calc(100% - 7rem);
-        margin-top: 7rem;
-    }
-    .move-btn{
-        display: block;
-    }
-    .instructions {
-        top: 120px;
-        bottom: auto;
-        left: 8px;
-        right: auto;
-    }
-    .impressum{
-        top: 160px;
-        bottom: auto;
-        left: 8px;
-        right: auto;
-    }
-
+  canvas {
+    width: 100%;
+  }
+  .title {
+    font-size: 7rem;
+  }
+  #button-overlay {
+    height: calc(100% - 7rem);
+    margin-top: 7rem;
+  }
+  .move-btn {
+    display: block;
+  }
+  .instructions {
+    top: 120px;
+    bottom: auto;
+    left: 8px;
+    right: auto;
+  }
+  .impressum {
+    top: 160px;
+    bottom: auto;
+    left: 8px;
+    right: auto;
+  }
 }
 
 @media (max-width: 520px) {
-    .title {
-        font-size: 5rem;
-    }
-    #button-overlay {
-        height: calc(100% - 5rem);
-        margin-top: 5rem;
-    }
+  .title {
+    font-size: 5rem;
+  }
+  #button-overlay {
+    height: calc(100% - 5rem);
+    margin-top: 5rem;
+  }
+  .instructions {
+    top: 90px;
+
+    left: 8px;
+  }
+  .impressum {
+    top: 130px;
+
+    left: 8px;
+  }
 }
 
 @media (max-width: 480px) {
-    .impressum-content {
-        font-size: 1.2rem;
-    }
-
-    .impressum-headline {
-        font-size: 2rem; 
-    }
+  .impressum-content {
+    font-size: 1.2rem;
+  }
+  .impressum-headline {
+    font-size: 2rem;
+  }
+  .overlay-warning {
+    display: flex;
+  }
 }
 
 @media (max-width: 420px) {
-    .title {
-        display: none;
-    }
-    #button-overlay {
-        height: 100%;
-        margin-top: 0;
-    }
+  .title {
+    display: none;
+  }
+  #button-overlay {
+    height: 100%;
+    margin-top: 0;
+  }
 }
 
 @media (max-height: 480px) {
-    canvas {
-        height: 100vh;
-    }
-
-    .title {
-        display: none;
-    }
-    #button-overlay {
-        height: 100%;
-        margin-top: 0;
-    }
-
-    #fullscreen {
-        margin-top: 0;
-    }
-    .move-btn{
-        display: block;
-    }
-    .instructions {
-        top: 20px;
-        bottom: auto;
-        left: 8px;
-        right: auto;
-    }
-    .impressum{
-        top: 60px;
-        bottom: auto;
-        left: 8px;
-        right: auto;
-    }
+  canvas {
+    height: 100vh;
+  }
+  .title {
+    display: none;
+  }
+  #button-overlay {
+    height: 100%;
+    margin-top: 0;
+  }
+  #fullscreen {
+    margin-top: 0;
+  }
+  .move-btn {
+    display: block;
+  }
+  .instructions {
+    top: 20px;
+    bottom: auto;
+    left: 8px;
+    right: auto;
+  }
+  .impressum {
+    top: 60px;
+    bottom: auto;
+    left: 8px;
+    right: auto;
+  }
 }

@@ -14,6 +14,9 @@ class ScreenManager {
     this.restartGameCallback = restartGameCallback;
     this.currentScreen = null;
     this.currentButtons = [];
+
+    window.addEventListener('resize', this.toggleButtonsVisibility.bind(this));
+    this.toggleButtonsVisibility();
   }
 
   /**
@@ -187,7 +190,6 @@ class ScreenManager {
     goBackButton.remove();
     this.showStartScreen();
     document.getElementById("button-volume-down").style.display = "block";
-    this.soundManager.updateVolumeButton();
   }
 
   /**
@@ -247,8 +249,8 @@ class ScreenManager {
   /**
    * Creates a button and appends it to the screen.
    * @param {string} text - The text to display on the button.
-   * @param {function} callback - The function to call when the button is clicked.
-   * @param {string} type - The type of button (e.g., start, instructions, impressum).
+   * @param {function} callback - The function to be called when the button is clicked.
+   * @param {string} type - The type of the button (e.g., start, instructions, impressum).
    */
   createButton(text, callback, type) {
     const button = document.createElement("button");
@@ -258,16 +260,14 @@ class ScreenManager {
     if (type === "start" || type === "playAgain") {
       button.classList.add("start-button");
     } else if (type === "instructions") {
-      button.classList.add("button-start-screen");
-
-      button.classList.add("instructions");
+      button.classList.add("button-start-screen", "instructions");
     } else if (type === "impressum") {
-      button.classList.add("button-start-screen");
-      button.classList.add("impressum");
+      button.classList.add("button-start-screen", "impressum");
     }
 
     document.getElementById("fullscreen").appendChild(button);
-    this.currentButtons.push(button);
+    this.currentButtons.push(button); 
+    this.toggleButtonsVisibility();
   }
 
   /**
@@ -276,5 +276,21 @@ class ScreenManager {
   removeCurrentButtons() {
     this.currentButtons.forEach((button) => button.remove());
     this.currentButtons = [];
+  }
+
+    /**
+   * Controls the visibility of buttons based on viewport width.
+   * Hides buttons if viewport width is less than 500 pixels.
+   */
+   toggleButtonsVisibility() {
+    if (window.innerWidth < 480) {
+      this.currentButtons.forEach(button => {
+        button.style.display = "none"; 
+      });
+    } else {
+      this.currentButtons.forEach(button => {
+        button.style.display = "block"; 
+      });
+    }
   }
 }
