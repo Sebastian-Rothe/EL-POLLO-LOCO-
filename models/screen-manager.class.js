@@ -24,6 +24,15 @@ class ScreenManager {
     this.clearScreen();
     this.drawImage("./img/9_intro_outro_screens/start/startscreen_1.png");
 
+    this.createStartGameButton();
+    this.createInstructionsButton();
+    this.createImpressumButton();
+  }
+
+  /**
+   * Creates and appends the Start Game button.
+   */
+  createStartGameButton() {
     this.createButton(
       "Start Game",
       () => {
@@ -32,7 +41,12 @@ class ScreenManager {
       },
       "start"
     );
+  }
 
+  /**
+   * Creates and appends the Instructions button.
+   */
+  createInstructionsButton() {
     this.createButton(
       "Instructions",
       () => {
@@ -41,7 +55,12 @@ class ScreenManager {
       },
       "instructions"
     );
+  }
 
+  /**
+   * Creates and appends the Impressum button.
+   */
+  createImpressumButton() {
     this.createButton(
       "Impressum",
       () => {
@@ -57,15 +76,37 @@ class ScreenManager {
    */
   showInstructions() {
     this.clearScreen();
+    this.hideVolumeButtons();
+    const instructionsContent = this.createInstructionsContent();
+    const goBackButton = this.createGoBackButton(instructionsContent);
+
+    document.getElementById("fullscreen").appendChild(instructionsContent);
+    document.getElementById("fullscreen").appendChild(goBackButton);
+  }
+
+  /**
+   * Creates the content for the instructions screen.
+   * @returns {HTMLElement} The instructions content element.
+   */
+  createInstructionsContent() {
     const instructionsContent = document.createElement("div");
     instructionsContent.classList.add("impressum-content");
     instructionsContent.innerHTML = `
-            <span class="impressum-headline">Instructions</span>
-            <p>Move Left: Arrow Left (←) or A</p>
-            <p>Move Right: Arrow Right (→) or D</p>
-            <p>Jump: Spacebar</p>
-            <p>Throw: R</p> 
-        `;
+      <span class="impressum-headline">Instructions</span>
+      <p>Move Left: Arrow Left (←) or A</p>
+      <p>Move Right: Arrow Right (→) or D</p>
+      <p>Jump: Spacebar</p>
+      <p>Throw: R</p> 
+  `;
+    return instructionsContent;
+  }
+
+  /**
+   * Creates the go back button for the instructions screen.
+   * @param {HTMLElement} instructionsContent The instructions content element.
+   * @returns {HTMLElement} The go back button element.
+   */
+  createGoBackButton(instructionsContent) {
     const goBackButton = document.createElement("button");
     goBackButton.innerText = "Go Back";
     goBackButton.classList.add("start-button");
@@ -74,9 +115,7 @@ class ScreenManager {
       goBackButton.remove();
       this.showStartScreen();
     };
-
-    document.getElementById("fullscreen").appendChild(instructionsContent);
-    document.getElementById("fullscreen").appendChild(goBackButton);
+    return goBackButton;
   }
 
   /**
@@ -84,39 +123,71 @@ class ScreenManager {
    */
   showImpressum() {
     this.clearScreen();
+    this.hideVolumeButtons();
+    const impressumContent = this.createImpressumContent();
+    const goBackButton = this.createGoBackButton(impressumContent);
+    document.getElementById("fullscreen").appendChild(impressumContent);
+    document.getElementById("fullscreen").appendChild(goBackButton);
+  }
 
+  /**
+   * Hides volume control buttons.
+   */
+  hideVolumeButtons() {
     document.getElementById("button-volume-up").style.display = "none";
     document.getElementById("button-volume-down").style.display = "none";
     document.getElementById("button-volume-off").style.display = "none";
+  }
 
+  /**
+   * Creates the impressum content with contact information.
+   * @returns {HTMLElement} The impressum content element.
+   */
+  createImpressumContent() {
     const impressumContent = document.createElement("div");
     impressumContent.classList.add("impressum-content");
     impressumContent.innerHTML = `
-            <span class="impressum-headline">Impressum</span>
-            <span>Sebastian Rothe</span>
-            <span>Mühlwehrstraße, 8</span>
-            <span>70488 Frankfurt Am Main</span>
-            <br>
-            <span>Kontakt</span>
-            <span>Telefon: 0176 52968778</span>
-            <span>E-Mail: sebi1995@gmx.at</span>
-            <br>
-            <span> Erstellt von impressum-generator.info - powered by abfindungshero.de </span>
-            <span>Angaben gemäß Par. 5 DDG</span>
-        `;
+      <span class="impressum-headline">Impressum</span>
+      <span>Sebastian Rothe</span>
+      <span>Mühlwehrstraße, 8</span>
+      <span>70488 Frankfurt Am Main</span>
+      <br>
+      <span>Kontakt</span>
+      <span>Telefon: 0176 52968778</span>
+      <span>E-Mail: sebi1995@gmx.at</span>
+      <br>
+      <span> Erstellt von impressum-generator.info - powered by abfindungshero.de </span>
+      <span>Angaben gemäß Par. 5 DDG</span>
+  `;
+    return impressumContent;
+  }
 
+  /**
+   * Creates a 'Go Back' button and assigns the click handler.
+   * @param {HTMLElement} impressumContent - The impressum content element to be removed on button click.
+   * @returns {HTMLElement} The 'Go Back' button element.
+   */
+  createGoBackButton(impressumContent) {
     const goBackButton = document.createElement("button");
     goBackButton.innerText = "Go Back";
     goBackButton.classList.add("start-button");
     goBackButton.onclick = () => {
-      impressumContent.remove();
-      goBackButton.remove();
-      this.showStartScreen();
-      document.getElementById("button-volume-off").style.display = "block";
-      this.soundManager.updateVolumeButton();
+      this.handleGoBack(impressumContent, goBackButton);
     };
-    document.getElementById("fullscreen").appendChild(impressumContent);
-    document.getElementById("fullscreen").appendChild(goBackButton);
+    return goBackButton;
+  }
+
+  /**
+   * Handles the actions when the 'Go Back' button is clicked.
+   * @param {HTMLElement} impressumContent - The impressum content element to be removed.
+   * @param {HTMLElement} goBackButton - The 'Go Back' button to be removed.
+   */
+  handleGoBack(impressumContent, goBackButton) {
+    impressumContent.remove();
+    goBackButton.remove();
+    this.showStartScreen();
+    document.getElementById("button-volume-down").style.display = "block";
+    this.soundManager.updateVolumeButton();
   }
 
   /**
