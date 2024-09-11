@@ -51,10 +51,10 @@ canvas {
     background-color: rgb(247, 188, 99); 
     border: 3px solid rgb(184, 97, 39); 
     border-radius: 12px; 
-    cursor: pointer; 
 }
 
 .start-button:hover {
+    cursor: pointer; 
     background-color: rgb(184, 97, 39); 
 }
 
@@ -65,7 +65,7 @@ canvas {
     width: 100%; /* Overlay nimmt die gesamte Breite ein */
     height: calc(100% - 10rem); /* Overlay nimmt die gesamte Höhe ein */
     margin-top: 10rem;
-    pointer-events: none; /* Verhindert, dass das Overlay selbst klickbar ist */
+    /* pointer-events: none; Verhindert, dass das Overlay selbst klickbar ist */
 }
 
 .mobile-button {
@@ -111,9 +111,74 @@ canvas {
     position: absolute;
     right: 8px;
     top: 8px;
+    cursor: pointer;
 }
 
-/* Medienanfragen bleiben unverändert */
+.button-start-screen{
+    z-index: 2000;
+    background: none;
+    border: none;
+    font-family: 'zabars', Arial, Helvetica, sans-serif;
+    color: rgb(153, 69, 9);
+    font-size: 2.3rem;
+    position: absolute;
+}
+.button-start-screen:hover{
+    cursor: pointer;
+    color: rgb(250, 199, 105);
+}
+.impressum{
+    bottom: 16px;
+    right: 8%;
+}
+.instructions{
+    bottom: 16px;
+    left: 8%;
+}
+.impressum-content {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5%; 
+    font-size: 1.8rem; 
+    border-radius: 5px;
+    margin-top: 5%; 
+    overflow: auto;
+    max-width: 90%; 
+}
+
+.impressum-content::-webkit-scrollbar {
+    display: none;
+}
+
+.impressum-headline {
+    margin-top: 24px;
+    font-size: 4rem; 
+}
+
+@media (max-width: 768px) {
+    .impressum-content {
+        font-size: 1.5rem; 
+        padding: 10%;
+    }
+
+    .impressum-headline {
+        font-size: 2.5rem; 
+    }
+}
+
+@media (max-width: 480px) {
+    .impressum-content {
+        font-size: 1.2rem;
+    }
+
+    .impressum-headline {
+        font-size: 2rem; 
+    }
+}
+
 @media (max-width: 720px) {
     canvas {
         width: 100%;
