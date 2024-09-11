@@ -25,14 +25,35 @@ class SoundManager {
         this.addVolumeButtonListeners();
     }
 
+    // playSound(soundName) {
+    //     const sound = this.sounds[soundName];
+    //     if (sound) {
+    //         sound.play();
+    //     } else {
+    //         console.error(`Sound ${soundName} not found!`);
+    //     }
+    // }
     playSound(soundName) {
         const sound = this.sounds[soundName];
         if (sound) {
-            sound.play();
+            const clonedSound = sound.cloneNode(); // Erstellt eine Kopie des Sounds
+            clonedSound.play();                    // Spielt die Kopie ab
         } else {
             console.error(`Sound ${soundName} not found!`);
         }
     }
+    
+       // playSound(soundName) {
+    //     const sound = this.sounds[soundName];
+    //     if (sound) {
+    //         sound.pause();           // Stoppt den Sound, falls er noch spielt
+    //         sound.currentTime = 0;   // Setzt den Sound an den Anfang zurück
+    //         sound.play();            // Spielt den Sound erneut ab
+    //     } else {
+    //         console.error(`Sound ${soundName} not found!`);
+    //     }
+    // }
+    
 
     playBackgroundMusic(){
         this.bgMusic.play();

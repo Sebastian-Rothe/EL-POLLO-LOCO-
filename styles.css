@@ -26,6 +26,8 @@ h1 {
 
 canvas {
     display: block;
+    /* border: 1px solid rgb(237, 108, 52); */
+    border-radius: 8px;
 }
 
 #fullscreen {
