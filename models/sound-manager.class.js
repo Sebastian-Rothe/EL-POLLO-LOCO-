@@ -32,6 +32,9 @@ class SoundManager {
   playSound(soundName) {
     const sound = this.sounds[soundName];
     if (sound) {
+      if (this.currentVolumeState === 0) {
+        return; 
+      }
       if (soundName === "characterHurt") {
         sound.play();
       } else {
@@ -42,7 +45,7 @@ class SoundManager {
       console.error(`Sound ${soundName} not found!`);
     }
   }
-
+  
   /**
    * Plays the background music.
    */
