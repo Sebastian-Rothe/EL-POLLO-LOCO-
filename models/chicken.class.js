@@ -55,7 +55,6 @@ class Chicken extends MovableObject {
    */
   hit() {
     this.isDead = true;
-    console.log("chicken is dead");
     this.loadImage(this.Image_Dead[0]);
     this.y = 360;
   }

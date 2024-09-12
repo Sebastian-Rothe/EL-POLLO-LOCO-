@@ -33,7 +33,7 @@ class SoundManager {
     const sound = this.sounds[soundName];
     if (sound) {
       if (this.currentVolumeState === 0) {
-        return; 
+        return;
       }
       if (soundName === "characterHurt") {
         sound.play();
@@ -45,7 +45,7 @@ class SoundManager {
       console.error(`Sound ${soundName} not found!`);
     }
   }
-  
+
   /**
    * Plays the background music.
    */
@@ -118,5 +118,21 @@ class SoundManager {
     this.currentVolumeState = (this.currentVolumeState + 1) % 3;
     this.setVolume(this.volumeStates[this.currentVolumeState]);
     this.updateVolumeButton();
+  }
+
+  /**
+   * Sets the volume to off.
+   */
+  setVolumeToOff() {
+    this.currentVolumeState = 0; 
+    this.setVolume("off"); 
+  }
+
+  /**
+   * Sets the volume to low at startGame.
+   */
+  setVolumeToDown() {
+    this.currentVolumeState = 1; 
+    this.setVolume("low"); 
   }
 }

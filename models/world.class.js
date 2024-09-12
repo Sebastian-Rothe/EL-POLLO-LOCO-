@@ -34,6 +34,9 @@ class World {
   startGame() {
     this.running = true;
     this.soundManager.playBackgroundMusic();
+    this.soundManager.setVolumeToDown();
+    this.soundManager.updateVolumeButton();
+
     initLevel();
     this.initializeGameObjects();
     this.setWorld();
@@ -107,6 +110,8 @@ class World {
     } else {
       this.screenManager.showGameOverScreen();
     }
+    this.soundManager.setVolumeToOff();
+    this.soundManager.updateVolumeButton();
   }
 
   /**
