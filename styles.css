@@ -227,9 +227,6 @@ canvas {
   .move-btn {
     display: block; 
   }
-}
-
-@media (max-width: 950px) {
   .instructions {
     top: 168px;
     bottom: auto;
