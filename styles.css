@@ -186,16 +186,50 @@ canvas {
   font-size: 4rem;
 }
 
-@media (min-width: 951px) {
+@media (min-width: 1024px) and (max-width: 1366px) {
   .move-btn {
-    display: none;
+    display: block; 
+  }
+  .button-left {
+    position: absolute;
+    left: 16px;
+    bottom: 20px; 
+  }
+  .button-right {
+    position: absolute;
+    left: 104px; 
+    bottom: 20px;
+  }
+  .button-jump {
+    position: absolute;
+    right: 16px;
+    bottom: 20px; 
+  }
+  .button-throw {
+    position: absolute;
+    right: 104px; 
+    bottom: 20px; 
+  }
+  .instructions {
+    top: 168px;
+    bottom: auto;
+    left: 8px;
+    right: auto;
+  }
+  .impressum {
+    top: 208px;
+    bottom: auto;
+    left: 8px;
+    right: auto;
+  }
+}
+@media (max-width: 1200px) {
+  .move-btn {
+    display: block; 
   }
 }
 
 @media (max-width: 950px) {
-  .move-btn {
-    display: block; 
-  }
   .instructions {
     top: 168px;
     bottom: auto;
