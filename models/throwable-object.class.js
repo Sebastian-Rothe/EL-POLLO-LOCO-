@@ -51,35 +51,46 @@ class ThrowableObject extends MovableObject {
       this.playAnimation(this.Images_Bottle);
     }, 100);
   }
+}
+
+
+
+
+
+
+
+
 
   /**
    * Plays the splash animation when the bottle hits the ground.
    */
-  playSplashAnimation() {
-    console.log("Splash Animation Triggered");
-    if (this.isSplashing) return;
+//   bottle.playSplashAnimation(); // will noch nicht!!!!
+//   playSplashAnimation() {
+//     console.log("Splash Animation Triggered");
+//     if (this.isSplashing) return;
 
-    this.isSplashing = true;
-    clearInterval(this.thrownBottle);
-    clearInterval(this.rotationBottle);
-    this.playAnimation(this.Images_Bottle_Splash);
+//     this.isSplashing = true;
+//     clearInterval(this.thrownBottle);
+//     clearInterval(this.rotationBottle);
+//     this.playAnimation(this.Images_Bottle_Splash);
 
-    const originalY = this.y;
-    let splashYPosition = originalY;
-    let splashAnimationFrame = 0;
+//     const originalY = this.y;
+//     let splashYPosition = originalY;
+//     let splashAnimationFrame = 0;
 
-    this.splashAnimationInterval = setInterval(() => {
-      if (splashAnimationFrame < this.Images_Bottle_Splash.length) {
-        this.img =
-          this.imageCache[this.Images_Bottle_Splash[splashAnimationFrame]];
-        splashAnimationFrame++;
-      } else {
-        clearInterval(this.splashAnimationInterval);
-        this.isSplashing = false;
-        this.y = originalY;
-      }
-      splashYPosition += 5;
-      this.y = splashYPosition;
-    }, 1000);
-  }
-}
+//     this.splashAnimationInterval = setInterval(() => {
+//       if (splashAnimationFrame < this.Images_Bottle_Splash.length) {
+//         this.img =
+//           this.imageCache[this.Images_Bottle_Splash[splashAnimationFrame]];
+//         splashAnimationFrame++;
+//       } else {
+//         clearInterval(this.splashAnimationInterval);
+//         this.isSplashing = false;
+//         this.y = originalY;
+//       }
+//       splashYPosition += 5;
+//       this.y = splashYPosition;
+//     }, 1000);
+//   }
+// }
+

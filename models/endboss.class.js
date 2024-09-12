@@ -107,11 +107,9 @@ class Endboss extends MovableObject {
   die() {
     this.isDead = true;
     this.playDeadAnimation();
-    console.log("Endboss is dead!");
     this.moving = false;
     this.clearAllIntervals();
     setTimeout(() => {
-      // Nach einer kurzen Verzögerung das Spiel beenden
       world.endGame(true);
     }, 1000);
   }
@@ -183,7 +181,7 @@ class Endboss extends MovableObject {
    * Moves the end boss forward.
    */
   moveForward() {
-    this.speed = 1;
+    this.speed = 7;
     this.x += this.speed;
   }
 
@@ -191,7 +189,7 @@ class Endboss extends MovableObject {
    * Moves the end boss backward.
    */
   moveBackward() {
-    this.speed = Math.random() * 10 + 10;
+    this.speed = Math.random() * 100 + 10;
     this.x -= this.speed;
   }
 
