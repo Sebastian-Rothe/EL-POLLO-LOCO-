@@ -27,7 +27,6 @@ class ScreenManager {
     this.clearScreen();
     this.drawImage("./img/9_intro_outro_screens/start/startscreen_1.png");
 
-    // Erstellen der Buttons mit der neuen Funktion
     this.createMultipleButtons([
       { text: "Start Game", callback: () => { this.removeCurrentButtons(); this.startGameCallback(); }, type: "start" },
       { text: "Instructions", callback: () => { this.removeCurrentButtons(); this.showInstructions(); }, type: "instructions" },
@@ -43,7 +42,6 @@ class ScreenManager {
     this.clearScreen();
     this.drawImage("./img/9_intro_outro_screens/game_over/oh no you lost!.png");
 
-    // Erstellen der Buttons für "Play Again" und "Return to Start"
     this.createMultipleButtons([
       { text: "Play Again", callback: () => { this.removeCurrentButtons(); this.restartGameCallback(); }, type: "playAgain" },
       { text: "Return to Start", callback: () => { this.removeCurrentButtons(); this.showStartScreen(); }, type: "start-above" }
@@ -58,7 +56,6 @@ class ScreenManager {
     this.clearScreen();
     this.drawImage("./img/9_intro_outro_screens/win/win_2.png");
 
-    // Erstellen der Buttons für "Play Again" und "Return to Start"
     this.createMultipleButtons([
       { text: "Play Again", callback: () => { this.removeCurrentButtons(); this.restartGameCallback(); }, type: "playAgain" },
       { text: "Return to Start", callback: () => { this.removeCurrentButtons(); this.showStartScreen(); }, type: "start-above" }
