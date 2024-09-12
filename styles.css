@@ -186,12 +186,35 @@ canvas {
   font-size: 4rem;
 }
 
+@media (min-width: 951px) {
+  .move-btn {
+    display: none;
+  }
+}
+
+@media (max-width: 950px) {
+  .move-btn {
+    display: block; 
+  }
+  .instructions {
+    top: 168px;
+    bottom: auto;
+    left: 8px;
+    right: auto;
+  }
+  .impressum {
+    top: 208px;
+    bottom: auto;
+    left: 8px;
+    right: auto;
+  }
+}
+
 @media (max-width: 768px) {
   .impressum-content {
     font-size: 1.5rem;
     padding: 10%;
   }
-
   .impressum-headline {
     font-size: 2.5rem;
   }
@@ -208,9 +231,6 @@ canvas {
     height: calc(100% - 7rem);
     margin-top: 7rem;
   }
-  .move-btn {
-    display: block;
-  }
   .instructions {
     top: 120px;
     bottom: auto;
@@ -224,6 +244,7 @@ canvas {
     right: auto;
   }
 }
+
 @media (max-height: 700px) and (min-width: 721px) {
   .instructions {
     top: 20px;
@@ -238,23 +259,17 @@ canvas {
     right: auto;
   }
 }
+
 @media (max-height: 700px) {
-  h1{
+  h1 {
     display: none;
   }
   #button-overlay {
     height: 100%;
     margin-top: 0;
   }
-  /* .instructions {
-    top: 20px;
-    left: 8px;
-  }
-  .impressum {
-    top: 60px;
-    left: 8px;
-  } */
 }
+
 @media (max-width: 520px) {
   .title {
     font-size: 5rem;
@@ -308,16 +323,5 @@ canvas {
   }
   #fullscreen {
     margin-top: 0;
-  }
-  .move-btn {
-    display: block;
-  }
-  .instructions {
-    top: 20px;
-    left: 8px;
-  }
-  .impressum {
-    top: 60px;
-    left: 8px;
   }
 }

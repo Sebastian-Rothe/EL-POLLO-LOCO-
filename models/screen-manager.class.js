@@ -189,7 +189,7 @@ class ScreenManager {
     impressumContent.remove();
     goBackButton.remove();
     this.showStartScreen();
-    document.getElementById("button-volume-down").style.display = "block";
+    document.getElementById("button-volume-down").style.display = "block";     
   }
 
   /**
