@@ -71,6 +71,25 @@ canvas {
   border-radius: 12px;
 }
 
+.start-button-above {
+  position: absolute;
+  bottom: 72px; 
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1001;
+  padding: 10px 20px;
+  font-size: 1.9rem;
+  font-family: "zabars", Arial, Helvetica, sans-serif;
+  background-color: rgb(247, 188, 99);
+  border: 3px solid rgb(184, 97, 39);
+  border-radius: 12px;
+}
+
+.start-button-above:hover {
+  cursor: pointer;
+  background-color: rgb(184, 97, 39);
+}
+
 .start-button:hover {
   cursor: pointer;
   background-color: rgb(184, 97, 39);
