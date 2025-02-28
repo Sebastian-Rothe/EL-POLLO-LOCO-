@@ -13,7 +13,7 @@ These principles ensure a modular and maintainable game structure, making this p
 ## 🔥 Game Features  
 ✔️ **Jump, Run & Throw Mechanics** – Move Pepe through the game world, avoid obstacles, and throw objects to defeat enemies.  
 ✔️ **Collectibles** – Gather coins and Tabasco salsa to power up for the final battle.  
-✔️ **Enemy AI** – The crazy hen is not an easy opponent! Dodge her attacks and find the best strategy to win.  
+✔️ **Randomized Enemy Behavior** – The crazy hen moves unpredictably based on programmed patterns.  
 ✔️ **Object-Oriented Structure** – The game is designed using **classes and objects** to ensure flexibility and clean code.  
 
 ## 🎯 Learning Objectives  
