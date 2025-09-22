@@ -153,11 +153,11 @@ class ScreenManager {
       <span class="impressum-headline">Impressum</span>
       <span>Sebastian Rothe</span>
       <span>Mühlwehrstraße, 8</span>
-      <span>70488 Frankfurt Am Main</span>
+      <span>60488 Frankfurt am Main</span>
       <br>
       <span>Kontakt</span>
       <span>Telefon: 0176 52968778</span>
-      <span>E-Mail: sebi1995@gmx.at</span>
+      <span>E-Mail: mail@sebastian-rothe.com</span>
       <br>
       <span> Erstellt von impressum-generator.info - powered by abfindungshero.de </span>
       <span>Angaben gemäß Par. 5 DDG</span>
